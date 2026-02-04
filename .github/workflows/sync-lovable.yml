@@ -1,0 +1,33 @@
+name: Sync Lovable into staging
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"   # daily 06:00 UTC (change if you want)
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout staging
+        uses: actions/checkout@v4
+        with:
+          ref: staging
+          fetch-depth: 0
+
+      - name: Add lovable remote and fetch
+        run: |
+          git remote add lovable https://github.com/ekbatashoonya/ek-bata-shoonya-portal-43-9d1ae0a6.git || true
+          git fetch lovable
+
+      - name: Merge lovable/main into staging
+        run: |
+          git merge --no-edit lovable/main
+
+      - name: Push staging
+        run: |
+          git push origin staging
