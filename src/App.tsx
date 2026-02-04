@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ModeProvider } from "@/contexts/ModeContext";
 import { MainLayout } from "@/components/layout";
+import { InterestPopup } from "@/components/InterestPopup";
 import { getSavedMode, DEFAULT_MODE } from "@/lib/modes";
 
 // Pages
@@ -17,6 +18,9 @@ import { BlogPage } from "@/pages/BlogPage";
 import { BlogPostPage } from "@/pages/BlogPostPage";
 import { AboutPage } from "@/pages/AboutPage";
 import { NotAvailablePage } from "@/pages/NotAvailablePage";
+import { PrivacyPage } from "@/pages/PrivacyPage";
+import { TermsPage } from "@/pages/TermsPage";
+import { ContactPage } from "@/pages/ContactPage";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +48,9 @@ function ModeRoutes() {
         <Route path="blog" element={<BlogPage />} />
         <Route path="blog/:slug" element={<BlogPostPage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="terms" element={<TermsPage />} />
+        <Route path="contact" element={<ContactPage />} />
         <Route path="*" element={<NotAvailablePage />} />
       </Route>
 
@@ -60,6 +67,7 @@ const App = () => (
       <Sonner />
       <HashRouter>
         <ModeProvider>
+          <InterestPopup />
           <ModeRoutes />
         </ModeProvider>
       </HashRouter>

@@ -5,9 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // For GitHub Pages project site deployment
-  // Change 'ek-bata-shoonya' to your repository name when deploying
-  base: mode === "production" ? "/ek-bata-shoonya/" : "/",
+  // For GitHub Pages user site deployment (root domain)
+  // For user sites (username.github.io), base should be "/"
+  base: "/",
   server: {
     host: "::",
     port: 8080,

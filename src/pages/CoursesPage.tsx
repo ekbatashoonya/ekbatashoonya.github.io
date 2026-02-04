@@ -4,7 +4,7 @@ import { useModePath } from '@/hooks/useModePath';
 import { useTranslations } from '@/lib/translations';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { BookOpen, ArrowRight } from 'lucide-react';
+import { BookOpen, ArrowRight, Clock } from 'lucide-react';
 import { courses } from '@/content/data';
 import { Breadcrumbs } from '@/components/content';
 
@@ -20,7 +20,9 @@ export function CoursesPage() {
       <div className="max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('courses')}</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          {mode === 'hinglish'
+          {mode === 'en'
+            ? 'Browse all available courses. Each course contains detailed lectures.'
+            : mode === 'hinglish'
             ? 'Sabhi available courses yahan dekhein. Har course mein detailed lectures hain.'
             : mode === 'hi-shuddh'
             ? 'सभी उपलब्ध पाठ्यक्रम यहाँ देखें। प्रत्येक पाठ्यक्रम में विस्तृत व्याख्यान हैं।'
@@ -41,7 +43,7 @@ export function CoursesPage() {
                 <div className="flex items-start justify-between">
                   <BookOpen className="h-8 w-8 text-primary mb-2" />
                   <Badge variant="secondary">
-                    {availableLectures.length}/{totalLectures} {mode === 'hinglish' ? 'lectures' : mode === 'hi-shuddh' ? 'व्याख्यान' : 'lectures'}
+                    {availableLectures.length}/{totalLectures} {mode === 'en' ? 'lectures' : mode === 'hinglish' ? 'lectures' : mode === 'hi-shuddh' ? 'व्याख्यान' : 'lectures'}
                   </Badge>
                 </div>
                 <CardTitle className="text-xl group-hover:text-primary transition-colors">
@@ -50,13 +52,20 @@ export function CoursesPage() {
                 <CardDescription>{course.description[mode]}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Link 
-                  to={getPath(`courses/${course.slug}`)}
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-                >
-                  {t('overview')}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                {availableLectures.length === 0 ? (
+                  <Badge variant="outline" className="gap-1">
+                    <Clock className="h-3 w-3" />
+                    {t('comingSoon')}
+                  </Badge>
+                ) : (
+                  <Link 
+                    to={getPath(`courses/${course.slug}`)}
+                    className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+                  >
+                    {t('overview')}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                )}
               </CardContent>
             </Card>
           );

@@ -2,42 +2,68 @@ import { Link } from 'react-router-dom';
 import { useMode } from '@/contexts/ModeContext';
 import { useModePath } from '@/hooks/useModePath';
 import { useTranslations } from '@/lib/translations';
+import { analytics } from '@/lib/analytics';
+import { config } from '@/config';
 import { MODE_ORDER, MODES } from '@/lib/modes';
-import { Github, Mail } from 'lucide-react';
+import { Github, Mail, Youtube, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export function Footer() {
   const { mode, switchMode } = useMode();
-  const { homePath, aboutPath } = useModePath();
+  const { homePath, aboutPath, getPath } = useModePath();
   const { t } = useTranslations(mode);
+
+  const handleModeSwitch = (newMode: typeof mode) => {
+    analytics.modeChange(newMode);
+    switchMode(newMode);
+  };
+
+  const handleRegisterInterest = () => {
+    analytics.registerInterestClick();
+    if (config.googleFormUrl) {
+      window.open(config.googleFormUrl, '_blank');
+    }
+  };
 
   return (
     <footer className="border-t border-border bg-card/50 mt-auto">
       <div className="container px-4 md:px-6 py-8 md:py-12">
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-3">
             <Link to={homePath} className="font-semibold text-lg text-foreground">
-              एक बटा शून्य
+              {mode === 'en' || mode === 'hinglish' ? 'Ek Bata Shoonya' : 'एक बटा शून्य'}
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
-              {mode === 'hinglish' 
+              {mode === 'en'
+                ? 'Making mathematics simple and accessible, in Hindi.'
+                : mode === 'hinglish' 
                 ? 'Maths ko simple aur accessible banana, Hindi mein.' 
                 : mode === 'hi-shuddh'
                 ? 'गणित को सरल और सुगम बनाना, हिन्दी में।'
                 : 'गणित को simple और accessible बनाना, Hindi में।'}
             </p>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2 mt-2"
+              onClick={handleRegisterInterest}
+            >
+              <Sparkles className="h-4 w-4" />
+              {t('registerInterest')}
+            </Button>
           </div>
 
           {/* Mode Quick Links */}
           <div className="space-y-3">
             <h4 className="font-medium text-foreground">
-              {mode === 'hinglish' ? 'Language Modes' : mode === 'hi-shuddh' ? 'भाषा विकल्प' : 'Language Modes'}
+              {mode === 'en' ? 'Language Modes' : mode === 'hinglish' ? 'Language Modes' : mode === 'hi-shuddh' ? 'भाषा विकल्प' : 'Language Modes'}
             </h4>
             <div className="flex flex-col gap-2">
               {MODE_ORDER.map((modeId) => (
                 <button
                   key={modeId}
-                  onClick={() => switchMode(modeId)}
+                  onClick={() => handleModeSwitch(modeId)}
                   className={`text-sm text-left transition-colors ${
                     modeId === mode 
                       ? 'text-primary font-medium' 
@@ -50,19 +76,46 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Legal Links */}
+          <div className="space-y-3">
+            <h4 className="font-medium text-foreground">
+              {mode === 'en' ? 'Legal' : mode === 'hinglish' ? 'Legal' : mode === 'hi-shuddh' ? 'कानूनी' : 'Legal'}
+            </h4>
+            <div className="flex flex-col gap-2">
+              <Link
+                to={getPath('privacy')}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('privacy')}
+              </Link>
+              <Link
+                to={getPath('terms')}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('terms')}
+              </Link>
+              <Link
+                to={getPath('about')}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t('about')}
+              </Link>
+            </div>
+          </div>
+
           {/* Contact */}
           <div className="space-y-3">
             <h4 className="font-medium text-foreground">{t('contact')}</h4>
             <div className="flex flex-col gap-2">
               <a
-                href="mailto:contact@example.com"
+                href={`mailto:${config.contactEmail}`}
                 className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors"
               >
                 <Mail className="h-4 w-4" />
                 <span>Email</span>
               </a>
               <a
-                href="https://github.com"
+                href={config.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors"
@@ -70,6 +123,17 @@ export function Footer() {
                 <Github className="h-4 w-4" />
                 <span>{t('suggestImprovement')}</span>
               </a>
+              {config.youtubeChannelUrl && (
+                <a
+                  href={config.youtubeChannelUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors"
+                >
+                  <Youtube className="h-4 w-4" />
+                  <span>YouTube</span>
+                </a>
+              )}
             </div>
           </div>
         </div>

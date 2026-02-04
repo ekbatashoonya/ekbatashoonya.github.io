@@ -1,4 +1,4 @@
-// UI Translations for all three modes
+// UI Translations for all four modes
 import { LanguageMode } from './modes';
 
 type TranslationKey = 
@@ -40,7 +40,19 @@ type TranslationKey =
   | 'allTypes'
   | 'heroTitle'
   | 'heroSubtitle'
-  | 'welcomeMessage';
+  | 'welcomeMessage'
+  | 'comingSoon'
+  | 'launchingSoon'
+  | 'registerInterest'
+  | 'maybeLater'
+  | 'youtubeFirst'
+  | 'youtubeFirstDesc'
+  | 'subscribeYoutube'
+  | 'latestVideo'
+  | 'roadmap'
+  | 'privacy'
+  | 'terms'
+  | 'vision';
 
 type Translations = Record<TranslationKey, string>;
 
@@ -85,6 +97,18 @@ const translations: Record<LanguageMode, Translations> = {
     heroTitle: 'एक बटा शून्य',
     heroSubtitle: 'गणित को सरल बनाना',
     welcomeMessage: 'स्वागत है',
+    comingSoon: 'शीघ्र आ रहा है',
+    launchingSoon: 'शीघ्र प्रारम्भ — अद्यतन प्राप्त करें',
+    registerInterest: 'रुचि दर्ज करें',
+    maybeLater: 'बाद में',
+    youtubeFirst: 'यूट्यूब-प्रथम शिक्षण',
+    youtubeFirstDesc: 'वीडियो यूट्यूब पर प्रकाशित होंगे। यह वेबसाइट पाठ्यक्रम, टिप्पणियाँ, पीडीएफ़, और अभ्यास प्रश्न प्रदान करेगी।',
+    subscribeYoutube: 'यूट्यूब पर सदस्यता लें',
+    latestVideo: 'नवीनतम वीडियो यहाँ दिखाई देगा',
+    roadmap: 'आगामी योजना',
+    privacy: 'गोपनीयता नीति',
+    terms: 'उपयोग की शर्तें',
+    vision: 'दृष्टिकोण',
   },
   'hi-mixed': {
     home: 'Home',
@@ -126,6 +150,18 @@ const translations: Record<LanguageMode, Translations> = {
     heroTitle: 'Ek Bata Shoonya',
     heroSubtitle: 'गणित को simple बनाना',
     welcomeMessage: 'Welcome!',
+    comingSoon: 'Coming Soon',
+    launchingSoon: 'Launching soon — updates पाएँ',
+    registerInterest: 'Interest register करें',
+    maybeLater: 'बाद में',
+    youtubeFirst: 'YouTube-first Learning',
+    youtubeFirstDesc: 'Videos YouTube पर launch होंगे। यह website syllabi, notes, PDFs, और practice questions provide करेगी।',
+    subscribeYoutube: 'YouTube पर Subscribe करें',
+    latestVideo: 'Latest video यहाँ दिखेगा',
+    roadmap: 'Roadmap',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use',
+    vision: 'Vision',
   },
   'hinglish': {
     home: 'Home',
@@ -167,11 +203,76 @@ const translations: Record<LanguageMode, Translations> = {
     heroTitle: 'Ek Bata Shoonya',
     heroSubtitle: 'Maths ko simple banana',
     welcomeMessage: 'Welcome!',
+    comingSoon: 'Coming Soon',
+    launchingSoon: 'Launching soon — updates paayein',
+    registerInterest: 'Interest register karein',
+    maybeLater: 'Baad mein',
+    youtubeFirst: 'YouTube-first Learning',
+    youtubeFirstDesc: 'Videos YouTube par launch honge. Yeh website syllabi, notes, PDFs, aur practice questions provide karegi.',
+    subscribeYoutube: 'YouTube par Subscribe karein',
+    latestVideo: 'Latest video yahaan dikhega',
+    roadmap: 'Roadmap',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use',
+    vision: 'Vision',
+  },
+  'en': {
+    home: 'Home',
+    courses: 'Courses',
+    notes: 'Notes',
+    blog: 'Blog',
+    about: 'About',
+    startLearning: 'Start Learning',
+    browseNotes: 'Browse Notes',
+    newsletter: 'Newsletter',
+    emailPlaceholder: 'Your email',
+    subscribe: 'Subscribe',
+    whatIsThis: 'What is this?',
+    whoIsThisFor: 'Who is this for?',
+    howToUse: 'How to use?',
+    copyright: '© Ek Bata Shoonya',
+    suggestImprovement: 'Suggest Improvement',
+    contact: 'Contact',
+    missionStatement: 'Our Mission',
+    notAvailable: 'Not available in this language',
+    switchToAvailable: 'View in available language',
+    objectives: 'Objectives',
+    prerequisites: 'Prerequisites',
+    examples: 'Examples',
+    exercises: 'Exercises',
+    previous: 'Previous',
+    next: 'Next',
+    overview: 'Overview',
+    syllabus: 'Syllabus',
+    lectures: 'Lectures',
+    view: 'View',
+    download: 'Download',
+    viewLatex: 'View LaTeX',
+    filterBy: 'Filter by',
+    allCourses: 'All Courses',
+    allTopics: 'All Topics',
+    allModes: 'All Modes',
+    allTypes: 'All Types',
+    heroTitle: 'Ek Bata Shoonya',
+    heroSubtitle: 'Making Mathematics Simple',
+    welcomeMessage: 'Welcome!',
+    comingSoon: 'Coming Soon',
+    launchingSoon: 'Launching soon — get updates',
+    registerInterest: 'Register Interest',
+    maybeLater: 'Maybe Later',
+    youtubeFirst: 'YouTube-first Learning',
+    youtubeFirstDesc: 'Videos will launch on YouTube. This website will host syllabi, notes, PDFs, references, and exercises.',
+    subscribeYoutube: 'Subscribe on YouTube',
+    latestVideo: 'Latest video will appear here',
+    roadmap: 'Roadmap',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Use',
+    vision: 'Vision',
   },
 };
 
 export function getTranslation(mode: LanguageMode, key: TranslationKey): string {
-  return translations[mode][key] || translations['hi-mixed'][key] || key;
+  return translations[mode][key] || translations['en'][key] || key;
 }
 
 export function useTranslations(mode: LanguageMode) {
