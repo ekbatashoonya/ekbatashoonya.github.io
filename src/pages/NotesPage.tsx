@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 import { useMode } from '@/contexts/ModeContext';
 import { useTranslations } from '@/lib/translations';
+import { analytics } from '@/lib/analytics';
 import { Breadcrumbs } from '@/components/content';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { FileText, Download, ExternalLink, Code } from 'lucide-react';
+import { FileText, Download, ExternalLink, Code, Clock } from 'lucide-react';
 import notesData from '@/content/notes/index.json';
 
 export function NotesPage() {
@@ -31,6 +32,11 @@ export function NotesPage() {
     return note.title;
   };
 
+  const handleViewPdf = (pdfPath: string) => {
+    const pdfName = pdfPath.split('/').pop() || pdfPath;
+    analytics.openNotesPdf(pdfName);
+  };
+
   return (
     <div className="container px-4 md:px-6 py-8 md:py-12">
       <Breadcrumbs items={[{ label: t('notes') }]} />
@@ -38,7 +44,9 @@ export function NotesPage() {
       <div className="max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('notes')}</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          {mode === 'hinglish'
+          {mode === 'en'
+            ? 'Download PDF notes, cheatsheets, and LaTeX files.'
+            : mode === 'hinglish'
             ? 'PDF notes, cheatsheets, aur LaTeX files download karein.'
             : mode === 'hi-shuddh'
             ? 'पीडीएफ़ टिप्पणियाँ, चीटशीट, और लाटेक्स फ़ाइलें डाउनलोड करें।'
@@ -89,15 +97,39 @@ export function NotesPage() {
             <SelectItem value="hi-shuddh">हिन्दी (शुद्ध)</SelectItem>
             <SelectItem value="hi-mixed">हिन्दी + English</SelectItem>
             <SelectItem value="hinglish">Hinglish</SelectItem>
+            <SelectItem value="en">English</SelectItem>
           </SelectContent>
         </Select>
       </div>
+
+      {/* Coming Soon Notice */}
+      <Card className="mb-8 border-dashed">
+        <CardContent className="flex items-center gap-4 py-6">
+          <Clock className="h-8 w-8 text-muted-foreground" />
+          <div>
+            <h3 className="font-medium">
+              {mode === 'en' ? 'More notes coming soon' : mode === 'hinglish' ? 'Aur notes jaldi aa rahe hain' : mode === 'hi-shuddh' ? 'और टिप्पणियाँ शीघ्र आ रही हैं' : 'और notes जल्द आ रहे हैं'}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {mode === 'en'
+                ? 'We are preparing downloadable PDFs and LaTeX notes for all lectures.'
+                : mode === 'hinglish'
+                ? 'Hum sabhi lectures ke liye downloadable PDFs aur LaTeX notes prepare kar rahe hain.'
+                : mode === 'hi-shuddh'
+                ? 'हम सभी व्याख्यानों के लिए डाउनलोड करने योग्य पीडीएफ़ और लाटेक्स टिप्पणियाँ तैयार कर रहे हैं।'
+                : 'हम सभी lectures के लिए downloadable PDFs और LaTeX notes prepare कर रहे हैं।'}
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Notes Grid */}
       <div className="grid gap-4 md:grid-cols-2">
         {filteredNotes.length === 0 ? (
           <p className="text-muted-foreground col-span-2 text-center py-8">
-            {mode === 'hinglish'
+            {mode === 'en'
+              ? 'No notes found. Try changing the filters.'
+              : mode === 'hinglish'
               ? 'Koi notes nahi mile. Filters change karke dekhein.'
               : mode === 'hi-shuddh'
               ? 'कोई टिप्पणियाँ नहीं मिलीं। फ़िल्टर बदलकर देखें।'
@@ -117,18 +149,23 @@ export function NotesPage() {
                 <div className="flex flex-wrap gap-1">
                   {note.modes.map((m) => (
                     <Badge key={m} variant="secondary" className="text-xs">
-                      {m === 'hi-shuddh' ? 'शुद्ध' : m === 'hi-mixed' ? 'Mixed' : 'Roman'}
+                      {m === 'hi-shuddh' ? 'शुद्ध' : m === 'hi-mixed' ? 'Mixed' : m === 'en' ? 'EN' : 'Roman'}
                     </Badge>
                   ))}
                 </div>
                 
                 <p className="text-xs text-muted-foreground">
-                  {mode === 'hinglish' ? 'Last updated:' : mode === 'hi-shuddh' ? 'अंतिम अद्यतन:' : 'Last updated:'} {note.lastUpdated}
+                  {mode === 'en' ? 'Last updated:' : mode === 'hinglish' ? 'Last updated:' : mode === 'hi-shuddh' ? 'अंतिम अद्यतन:' : 'Last updated:'} {note.lastUpdated}
                 </p>
 
                 <div className="flex gap-2 flex-wrap">
                   {note.pdfPath && (
-                    <Button size="sm" variant="outline" asChild>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      asChild
+                      onClick={() => handleViewPdf(note.pdfPath!)}
+                    >
                       <a href={note.pdfPath} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="h-4 w-4 mr-1" />
                         {t('view')}

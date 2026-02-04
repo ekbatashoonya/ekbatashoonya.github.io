@@ -13,19 +13,21 @@ import blogWelcomeHiMixed from './blog/welcome/hi-mixed.md?raw';
 import blogWelcomeHinglish from './blog/welcome/hinglish.md?raw';
 
 // Content maps
-const lectureContent: Record<string, Record<LanguageMode, string | null>> = {
+const lectureContent: Record<string, Partial<Record<LanguageMode, string>>> = {
   'mathematical-logic/logic-lecture-0': {
     'hi-shuddh': logicLecture0HiShuddh,
     'hi-mixed': logicLecture0HiMixed,
     'hinglish': logicLecture0Hinglish,
+    // 'en' content not available yet
   },
 };
 
-const blogContent: Record<string, Record<LanguageMode, string | null>> = {
+const blogContent: Record<string, Partial<Record<LanguageMode, string>>> = {
   'welcome': {
     'hi-shuddh': blogWelcomeHiShuddh,
     'hi-mixed': blogWelcomeHiMixed,
     'hinglish': blogWelcomeHinglish,
+    // 'en' content not available yet
   },
 };
 

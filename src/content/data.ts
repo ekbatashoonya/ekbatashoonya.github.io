@@ -28,11 +28,13 @@ export const courses: Course[] = [
       'hi-shuddh': 'गणितीय तर्कशास्त्र',
       'hi-mixed': 'Mathematical Logic',
       'hinglish': 'Mathematical Logic',
+      'en': 'Mathematical Logic',
     },
     description: {
       'hi-shuddh': 'तर्कशास्त्र के मूलभूत सिद्धांतों का अध्ययन',
       'hi-mixed': 'Logic के fundamental principles का study',
       'hinglish': 'Logic ke fundamental principles ka study',
+      'en': 'Study of fundamental principles of logic',
     },
     lectures: [
       {
@@ -43,6 +45,7 @@ export const courses: Course[] = [
           'hi-shuddh': 'व्याख्यान ० — आधारभूत अवधारणाएँ',
           'hi-mixed': 'Lecture 0 — Basic Concepts',
           'hinglish': 'Lecture 0 — Basic Concepts',
+          'en': 'Lecture 0 — Basic Concepts',
         },
         availableModes: ['hi-shuddh', 'hi-mixed', 'hinglish'],
       },
@@ -54,6 +57,7 @@ export const courses: Course[] = [
           'hi-shuddh': 'व्याख्यान १ — तार्किक संयोजक',
           'hi-mixed': 'Lecture 1 — Logical Connectives',
           'hinglish': 'Lecture 1 — Logical Connectives',
+          'en': 'Lecture 1 — Logical Connectives',
         },
         availableModes: [], // Placeholder - not available yet
       },
@@ -79,11 +83,13 @@ export const blogPosts: BlogPost[] = [
       'hi-shuddh': 'एक बटा शून्य में आपका स्वागत है!',
       'hi-mixed': 'Welcome to Ek Bata Shoonya!',
       'hinglish': 'Welcome to Ek Bata Shoonya!',
+      'en': 'Welcome to Ek Bata Shoonya!',
     },
     excerpt: {
       'hi-shuddh': 'हम एक बटा शून्य का शुभारम्भ करते हुए अत्यंत प्रसन्न हैं।',
       'hi-mixed': 'हम Ek Bata Shoonya का launch करते हुए बहुत excited हैं।',
       'hinglish': 'Hum Ek Bata Shoonya ka launch karte hue bahut excited hain.',
+      'en': 'We are excited to launch Ek Bata Shoonya.',
     },
     date: '2025-01-01',
     availableModes: ['hi-shuddh', 'hi-mixed', 'hinglish'],

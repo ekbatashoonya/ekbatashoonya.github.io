@@ -1,6 +1,6 @@
 // Language/Register Mode System for Ek Bata Shoonya
 
-export type LanguageMode = 'hi-shuddh' | 'hi-mixed' | 'hinglish';
+export type LanguageMode = 'hi-shuddh' | 'hi-mixed' | 'hinglish' | 'en';
 
 export interface ModeConfig {
   id: LanguageMode;
@@ -32,9 +32,16 @@ export const MODES: Record<LanguageMode, ModeConfig> = {
     description: 'Hindi in Roman script',
     script: 'roman',
   },
+  'en': {
+    id: 'en',
+    label: 'English',
+    shortLabel: 'EN',
+    description: 'Full English',
+    script: 'roman',
+  },
 };
 
-export const MODE_ORDER: LanguageMode[] = ['hi-shuddh', 'hi-mixed', 'hinglish'];
+export const MODE_ORDER: LanguageMode[] = ['hi-shuddh', 'hi-mixed', 'hinglish', 'en'];
 
 export const DEFAULT_MODE: LanguageMode = 'hi-mixed';
 
