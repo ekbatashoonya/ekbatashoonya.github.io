@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ek Bata Shoonya Design System - Warm, Friendly Educational Theme */
+/* All colors in HSL format */
+
+@layer base {
+  :root {
+    /* Warm cream/yellow background palette */
+    --background: 48 100% 98%;
+    --foreground: 30 20% 15%;
+
+    /* Cards with subtle warmth */
+    --card: 48 80% 97%;
+    --card-foreground: 30 20% 15%;
+
+    /* Popovers */
+    --popover: 48 80% 99%;
+    --popover-foreground: 30 20% 15%;
+
+    /* Primary - warm amber/orange for CTAs */
+    --primary: 35 90% 50%;
+    --primary-foreground: 48 100% 98%;
+
+    /* Secondary - soft warm gray */
+    --secondary: 35 15% 92%;
+    --secondary-foreground: 30 20% 20%;
+
+    /* Muted - subtle warm gray */
+    --muted: 35 10% 94%;
+    --muted-foreground: 30 10% 45%;
+
+    /* Accent - light yellow highlight */
+    --accent: 48 100% 92%;
+    --accent-foreground: 30 20% 15%;
+
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 35 90% 50%;
+
+    /* Radius - rounded friendly feel */
+    --radius: 0.75rem;
+
+    /* Sidebar (reusing main theme) */
+    --sidebar-background: 48 60% 96%;
+    --sidebar-foreground: 30 20% 20%;
+    --sidebar-primary: 35 90% 50%;
+    --sidebar-primary-foreground: 48 100% 98%;
+    --sidebar-accent: 48 100% 92%;
+    --sidebar-accent-foreground: 30 20% 15%;
+    --sidebar-border: 35 20% 88%;
+    --sidebar-ring: 35 90% 50%;
+
+    /* Custom tokens for the education theme */
+    --hero-gradient-start: 48 100% 96%;
+    --hero-gradient-end: 35 80% 94%;
+    --text-heading: 30 30% 12%;
+    --text-body: 30 15% 25%;
+    --text-muted: 30 10% 50%;
+    --link: 35 85% 45%;
+    --link-hover: 35 90% 38%;
+    --success: 142 70% 45%;
+    --warning: 45 100% 50%;
+    --info: 200 80% 50%;
+  }
+
+  .dark {
+    --background: 30 20% 8%;
+    --foreground: 48 30% 92%;
+
+    --card: 30 18% 12%;
+    --card-foreground: 48 30% 92%;
+
+    --popover: 30 18% 10%;
+    --popover-foreground: 48 30% 92%;
+
+    --primary: 35 85% 55%;
+    --primary-foreground: 30 20% 8%;
+
+    --secondary: 30 15% 18%;
+    --secondary-foreground: 48 30% 90%;
+
+    --muted: 30 15% 20%;
+    --muted-foreground: 35 15% 60%;
+
+    --accent: 35 40% 20%;
+    --accent-foreground: 48 30% 92%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 15% 22%;
+    --input: 30 15% 22%;
+    --ring: 35 85% 55%;
+
+    --sidebar-background: 30 18% 10%;
+    --sidebar-foreground: 48 30% 90%;
+    --sidebar-primary: 35 85% 55%;
+    --sidebar-primary-foreground: 30 20% 8%;
+    --sidebar-accent: 35 40% 18%;
+    --sidebar-accent-foreground: 48 30% 92%;
+    --sidebar-border: 30 15% 22%;
+    --sidebar-ring: 35 85% 55%;
+
+    --hero-gradient-start: 30 20% 10%;
+    --hero-gradient-end: 30 18% 14%;
+    --text-heading: 48 40% 92%;
+    --text-body: 48 20% 80%;
+    --text-muted: 35 15% 55%;
+    --link: 35 80% 60%;
+    --link-hover: 35 85% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Typography for Hindi/Devanagari support */
+  html {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+      'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+  }
+
+  /* Comfortable reading width */
+  .prose-reading {
+    max-width: 65ch;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* KaTeX styles import */
+@import "katex/dist/katex.min.css";
+
+/* Custom KaTeX overrides for better integration */
+.katex {
+  font-size: 1.1em;
+}
+
+.katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Code block styling */
+pre {
+  @apply bg-muted rounded-lg p-4 overflow-x-auto;
+}
+
+code {
+  @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+}
+
+pre code {
+  @apply bg-transparent p-0;
+}
+
+/* Link styling */
+.prose a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-2;
+}
+
+/* Focus styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
