@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# Ek Bata Shoonya / एक बटा शून्य
 
-## Project info
+A static educational platform for Hindi-medium learners, featuring courses in Mathematical Logic and more.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Three Language Modes**: Pure Hindi (शुद्ध हिन्दी), Mixed Hindi-English, and Hinglish (Roman script)
+- **Course System**: Structured lectures with KaTeX math support
+- **Notes Library**: Downloadable PDFs and cheatsheets
+- **Blog**: Updates and announcements
+- **GitHub Pages Ready**: HashRouter for reliable deep-linking
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- React + TypeScript + Vite
+- Tailwind CSS + shadcn/ui
+- react-markdown with KaTeX for math rendering
+- HashRouter for GitHub Pages compatibility
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Development
 
-Changes made via Lovable will be committed automatically to this repo.
+```bash
+# Install dependencies
+npm install
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## Deployment
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+This project is configured for GitHub Pages deployment via GitHub Actions.
 
-**Use GitHub Codespaces**
+1. Push to the `main` branch
+2. GitHub Actions will automatically build and deploy
+3. Enable GitHub Pages in repo settings (Source: GitHub Actions)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Content Structure
 
-## What technologies are used for this project?
+```
+src/content/
+├── courses/                    # Course lectures (Markdown)
+│   └── mathematical-logic/
+│       └── logic-lecture-0/
+│           ├── hi-shuddh.md
+│           ├── hi-mixed.md
+│           └── hinglish.md
+├── blog/                       # Blog posts (Markdown)
+└── notes/
+    └── index.json              # Notes metadata
 
-This project is built with:
+public/notes/                   # PDF files for download
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Adding Content
 
-## How can I deploy this project?
+### New Lecture
+1. Create a folder under `src/content/courses/{course-slug}/{lecture-slug}/`
+2. Add Markdown files for each mode: `hi-shuddh.md`, `hi-mixed.md`, `hinglish.md`
+3. Update `src/content/data.ts` with lecture metadata
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### New Blog Post
+1. Create a folder under `src/content/blog/{post-slug}/`
+2. Add Markdown files for each mode
+3. Update `src/content/data.ts` with post metadata
 
-## Can I connect a custom domain to my Lovable project?
+### New Note
+1. Add PDF to `public/notes/`
+2. Update `src/content/notes/index.json` with metadata
 
-Yes, you can!
+## License
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+MIT
