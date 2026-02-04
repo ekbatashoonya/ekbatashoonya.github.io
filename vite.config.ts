@@ -7,7 +7,7 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   // For GitHub Pages project site deployment
   // Change 'ek-bata-shoonya' to your repository name when deploying
-  base: mode === "production" ? "/ek-bata-shoonya/" : "/",
+  base: "/",
   server: {
     host: "::",
     port: 8080,
