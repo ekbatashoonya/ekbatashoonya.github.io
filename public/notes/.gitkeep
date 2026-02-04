@@ -1,0 +1,9 @@
+// Placeholder PDF for Notes section
+// This file would normally be a real PDF. 
+// For the project to work, you can add actual PDF files to /public/notes/
+
+// Example notes structure expected:
+// /public/notes/logic-foundations-cheatsheet.pdf
+// /public/notes/truth-tables-reference.pdf
+
+// The Notes page will link to these files when they exist.
