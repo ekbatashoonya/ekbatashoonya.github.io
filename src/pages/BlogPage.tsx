@@ -22,7 +22,9 @@ export function BlogPage() {
       <div className="max-w-4xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{t('blog')}</h1>
         <p className="text-lg text-muted-foreground mb-8">
-          {mode === 'hinglish'
+          {mode === 'en'
+            ? 'Latest updates, announcements, and articles.'
+            : mode === 'hinglish'
             ? 'Latest updates, announcements, aur articles.'
             : mode === 'hi-shuddh'
             ? 'नवीनतम अद्यतन, घोषणाएँ, और लेख।'
@@ -33,7 +35,9 @@ export function BlogPage() {
       <div className="grid gap-6 max-w-2xl">
         {availablePosts.length === 0 ? (
           <p className="text-muted-foreground">
-            {mode === 'hinglish'
+            {mode === 'en'
+              ? 'No posts available in this language mode.'
+              : mode === 'hinglish'
               ? 'Koi posts available nahi hain is mode mein.'
               : mode === 'hi-shuddh'
               ? 'इस भाषा में कोई लेख उपलब्ध नहीं हैं।'
@@ -62,7 +66,7 @@ export function BlogPage() {
                   to={getPath(`blog/${post.slug}`)}
                   className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
                 >
-                  {mode === 'hinglish' ? 'Read more' : mode === 'hi-shuddh' ? 'और पढ़ें' : 'और पढ़ें'}
+                  {mode === 'en' ? 'Read more' : mode === 'hinglish' ? 'Read more' : mode === 'hi-shuddh' ? 'और पढ़ें' : 'और पढ़ें'}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </CardContent>
