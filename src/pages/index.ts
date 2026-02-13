@@ -1,0 +1,12 @@
+export { HomePage } from './HomePage';
+export { CoursesPage } from './CoursesPage';
+export { CourseOverviewPage } from './CourseOverviewPage';
+export { LecturePage } from './LecturePage';
+export { NotesPage } from './NotesPage';
+export { BlogPage } from './BlogPage';
+export { BlogPostPage } from './BlogPostPage';
+export { AboutPage } from './AboutPage';
+export { NotAvailablePage } from './NotAvailablePage';
+export { PrivacyPage } from './PrivacyPage';
+export { TermsPage } from './TermsPage';
+export { ContactPage } from './ContactPage';

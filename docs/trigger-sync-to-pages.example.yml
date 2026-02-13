@@ -1,0 +1,23 @@
+# Copy this file to the Lovable repo (ek-bata-shoonya-portal-43-9d1ae0a6) as:
+#   .github/workflows/trigger-sync-to-pages.yml
+# See docs/DEPLOY-WORKFLOW.md for setup (REPO_DISPATCH_TOKEN secret).
+
+name: Trigger sync to GitHub Pages repo
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  trigger-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger sync workflow in pages repo
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.REPO_DISPATCH_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/ekbatashoonya/ekbatashoonya.github.io/dispatches \
+            -d '{"event_type":"sync-from-lovable"}'

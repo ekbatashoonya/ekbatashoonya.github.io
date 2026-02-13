@@ -1,0 +1,51 @@
+{
+  "notes": [
+    {
+      "id": "logic-foundations-cheatsheet",
+      "title": "Logic Foundations Cheatsheet",
+      "titleHindi": "तर्कशास्त्र आधार चीटशीट",
+      "course": "mathematical-logic",
+      "topic": "logic-basics",
+      "modes": ["hi-shuddh", "hi-mixed", "hinglish"],
+      "type": "cheatsheet",
+      "pdfPath": "/notes/sample.pdf",
+      "latexPath": "/notes/sample.tex",
+      "lastUpdated": "2025-01-15"
+    },
+    {
+      "id": "truth-tables-reference",
+      "title": "Truth Tables Quick Reference",
+      "titleHindi": "सत्य सारणी त्वरित संदर्भ",
+      "course": "mathematical-logic",
+      "topic": "truth-tables",
+      "modes": ["hi-mixed", "hinglish", "en"],
+      "type": "pdf",
+      "pdfPath": "/notes/sample.pdf",
+      "lastUpdated": "2025-01-20"
+    },
+    {
+      "id": "propositional-logic-intro",
+      "title": "Introduction to Propositional Logic",
+      "titleHindi": "प्रतिज्ञप्तिक तर्कशास्त्र का परिचय",
+      "course": "mathematical-logic",
+      "topic": "propositional-logic",
+      "modes": ["en"],
+      "type": "pdf",
+      "pdfPath": "/notes/sample.pdf",
+      "lastUpdated": "2025-02-01"
+    }
+  ],
+  "courses": [
+    { "id": "mathematical-logic", "name": "Mathematical Logic", "nameHindi": "गणितीय तर्कशास्त्र" }
+  ],
+  "topics": [
+    { "id": "logic-basics", "name": "Logic Basics", "nameHindi": "तर्क मूलभूत" },
+    { "id": "truth-tables", "name": "Truth Tables", "nameHindi": "सत्य सारणी" },
+    { "id": "propositional-logic", "name": "Propositional Logic", "nameHindi": "प्रतिज्ञप्तिक तर्कशास्त्र" }
+  ],
+  "types": [
+    { "id": "pdf", "name": "PDF" },
+    { "id": "cheatsheet", "name": "Cheatsheet" },
+    { "id": "latex", "name": "LaTeX" }
+  ]
+}

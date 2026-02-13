@@ -1,0 +1,20 @@
+# Ek Bata Shoonya / एक बटा शून्य
+# https://ekbatashoonya.github.io
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ekbatashoonya.github.io/sitemap.xml
