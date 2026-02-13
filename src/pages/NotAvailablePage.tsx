@@ -26,7 +26,9 @@ export function NotAvailablePage({ availableModes = [] }: NotAvailablePageProps)
         </CardHeader>
         <CardContent className="space-y-6">
           <p className="text-muted-foreground">
-            {mode === 'hinglish'
+            {mode === 'en'
+              ? 'This content is not available in this language mode.'
+              : mode === 'hinglish'
               ? 'Yeh content is language mode mein available nahi hai.'
               : mode === 'hi-shuddh'
               ? 'यह सामग्री इस भाषा में उपलब्ध नहीं है।'
