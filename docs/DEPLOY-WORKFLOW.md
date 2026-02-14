@@ -45,13 +45,13 @@ Sync merges the Lovable repo’s public **dev** branch into the Pages repo’s *
 
 ### Setting up REPO_DISPATCH_TOKEN (one-time)
 
-You need **one** token that can trigger workflows in **ekbatashoonya/ekbatashoonya.github.io** (the Pages repo). Create it on the GitHub account that has push access to that repo, then add it as a secret **in the Lovable repo**.
+You need **one** token that can trigger workflow events (repository_dispatch) in **ekbatashoonya/ekbatashoonya.github.io** (the Pages repo). Create it on the GitHub account that has push access to that repo, then add it as a secret **in the Lovable repo**.
 
 **Step 1: Create a Personal Access Token**
 
 - **GitHub.com** → profile (top right) → **Settings** → **Developer settings** → **Personal access tokens**.
-- **Fine-grained** (recommended): **Generate new token**. Name it e.g. `trigger-pages-sync`. Under **Repository access**, choose **Only select repositories** and pick **ekbatashoonya/ekbatashoonya.github.io**. Under **Permissions** → **Repository permissions**, set **Actions** to **Read and write**. Generate and copy the token.
-- **Tokens (classic)**: **Generate new token (classic)**. Name it, set expiry, check **repo** scope. Generate and copy.
+- **Fine-grained** (recommended): **Generate new token**. Name it e.g. `trigger-pages-sync`. Under **Repository access**, choose **Only select repositories** and pick **ekbatashoonya/ekbatashoonya.github.io**. Under **Permissions** → **Repository permissions**, set **Actions** to **Read and write** and **Contents** to **Read** (both are required for repository_dispatch). Generate and copy the token.
+- **Tokens (classic)**: **Generate new token (classic)**. Name it, set expiry, check **repo** and **workflow** (workflow is required to trigger repository_dispatch). Generate and copy.
 
 **Step 2: Add the token in the Lovable repo**
 
@@ -62,6 +62,8 @@ You need **one** token that can trigger workflows in **ekbatashoonya/ekbatashoon
 
 - Push a commit to **dev** in the Lovable repo (or run “Trigger sync to GitHub Pages repo” from Actions there).
 - In the **Pages repo**, open **Actions** and confirm **“Sync Lovable into staging”** ran. If the token is wrong or missing, the trigger workflow in the Lovable repo will fail with 401/403.
+
+**If you see 403 “Resource not accessible by personal access token”** in the Lovable repo’s trigger workflow: the token does not have permission to trigger workflow events. Use a **classic** token with **workflow** scope, or a **fine-grained** token with **Actions: Read and write** and **Contents: Read** on the Pages repo. Re-create the token with those permissions and update `REPO_DISPATCH_TOKEN` in the Lovable repo.
 
 ## Versioning (which version where)
 
