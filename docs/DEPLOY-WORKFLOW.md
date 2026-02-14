@@ -105,7 +105,7 @@ You need **one** token that can trigger workflow events (repository_dispatch) in
 | **Lovable repo, `dev`** | `git log -1 --oneline` on **dev**. |
 | **Pages repo, `staging`** | **version-info.json** on the **staging** branch (`role: "staging"`, `updatedAt`, etc.). |
 | **Pages repo, `main`** | **version-info.json** on **main** (`role: "production"`, `deployed: true`). |
-| **Live site** | Footer version line; or **https://ekbatashoonya.github.io/version.json** (branch, commit, buildTime, deployed). |
+| **Live site** | Footer version line; or **https://ekbatashoonya.com/version.json** (branch, commit, buildTime, deployed). |
 
 ## Testing the workflow (Lovable dev -> staging -> main -> live)
 
@@ -126,7 +126,7 @@ You need **one** token that can trigger workflow events (repository_dispatch) in
 
 - After the deploy workflow completes, the live site updates.
 
-**Verify:** Pages repo Actions -> "Deploy to GitHub Pages" success; open the site and footer version line; open **https://ekbatashoonya.github.io/version.json** and confirm `deployed: true` and branch/commit match **main**.
+**Verify:** Pages repo Actions -> "Deploy to GitHub Pages" success; open the site and footer version line; open **https://ekbatashoonya.com/version.json** and confirm `deployed: true` and branch/commit match **main**.
 
 ### Quick reference
 

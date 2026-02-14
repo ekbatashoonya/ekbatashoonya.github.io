@@ -48,6 +48,7 @@ export function LecturePage() {
       />
 
       <article className="max-w-3xl mx-auto">
+        <h1 className="sr-only">{lecture.title[mode]}</h1>
         <MarkdownRenderer content={content} />
         
         <LectureNav 
