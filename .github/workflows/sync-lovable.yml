@@ -48,21 +48,24 @@ jobs:
           git add .github/workflows/
           git diff --staged --quiet || git commit -m "chore: preserve Pages workflows (strip Lovable workflow changes)"
 
-      - name: Write version-info.json (branch tracking)
+      - name: Write version-info.json (version flow from Lovable dev)
         run: |
-          SHA=$(git rev-parse --short HEAD)
+          # Version source of truth: Lovable repo dev branch. This file flows staging -> main -> deploy.
+          SOURCE_SHA=$(git rev-parse --short lovable/dev)
+          UPDATED=$(date -u +%Y-%m-%dT%H:%M:%SZ)
           echo '{
             "branch": "staging",
-            "commit": "'"$SHA"'",
+            "commit": "'"$(git rev-parse --short HEAD)"'",
             "sourceRepo": "ek-bata-shoonya-portal-43-9d1ae0a6",
             "sourceBranch": "dev",
-            "updatedAt": "'"$(date -u +%Y-%m-%dT%H:%M:%SZ)"'",
+            "sourceCommit": "'"$SOURCE_SHA"'",
+            "updatedAt": "'"$UPDATED"'",
             "role": "staging"
           }' > version-info.json
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add version-info.json
-          git diff --staged --quiet || git commit -m "chore: update version-info for staging"
+          git diff --staged --quiet || git commit -m "chore: version from Lovable dev ($SOURCE_SHA)"
 
       - name: Push staging
         run: |
