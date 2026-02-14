@@ -15,26 +15,26 @@ export function MarkdownRenderer({ content, className }: MarkdownRendererProps) 
         remarkPlugins={[remarkMath]}
         rehypePlugins={[rehypeKatex]}
         components={{
-          // Headings
+          // Headings: demote so page has only one H1 (page title). # → h2, ## → h3, etc.
           h1: ({ children }) => (
-            <h1 className="text-3xl font-bold text-foreground mt-8 mb-4 first:mt-0">
-              {children}
-            </h1>
-          ),
-          h2: ({ children }) => (
-            <h2 className="text-2xl font-semibold text-foreground mt-6 mb-3 border-b border-border pb-2">
+            <h2 className="text-3xl font-bold text-foreground mt-8 mb-4 first:mt-0">
               {children}
             </h2>
           ),
-          h3: ({ children }) => (
-            <h3 className="text-xl font-semibold text-foreground mt-5 mb-2">
+          h2: ({ children }) => (
+            <h3 className="text-2xl font-semibold text-foreground mt-6 mb-3 border-b border-border pb-2">
               {children}
             </h3>
           ),
-          h4: ({ children }) => (
-            <h4 className="text-lg font-medium text-foreground mt-4 mb-2">
+          h3: ({ children }) => (
+            <h4 className="text-xl font-semibold text-foreground mt-5 mb-2">
               {children}
             </h4>
+          ),
+          h4: ({ children }) => (
+            <h5 className="text-lg font-medium text-foreground mt-4 mb-2">
+              {children}
+            </h5>
           ),
           // Paragraphs
           p: ({ children }) => (

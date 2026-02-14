@@ -1,5 +1,5 @@
 # Ek Bata Shoonya / एक बटा शून्य
-# https://ekbatashoonya.github.io
+# https://ekbatashoonya.com
 
 User-agent: Googlebot
 Allow: /
@@ -17,4 +17,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ekbatashoonya.github.io/sitemap.xml
+Sitemap: https://ekbatashoonya.com/sitemap.xml
