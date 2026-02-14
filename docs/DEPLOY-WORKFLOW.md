@@ -41,7 +41,11 @@ The Pages repo has a workflow **“Sync Lovable into staging”** (`sync-lovable
 2. **Manual** — In the Pages repo, Actions → **“Sync Lovable into staging”** → Run workflow.
 3. **Daily backup** — A cron runs at 06:00 UTC in the Pages repo.
 
-Sync merges the Lovable repo’s public **dev** branch into the Pages repo’s **staging**; no token is needed in the Pages repo to read from the public Lovable repo.
+Sync merges the Lovable repo’s public **dev** branch into the Pages repo’s **staging**; no token is needed in the Pages repo to read from the public Lovable repo. The sync pushes the full branch (including `.github/workflows/` from Lovable), so the **Pages repo** must grant workflow write.
+
+**Pages repo: allow workflow write for GITHUB_TOKEN**
+
+In **ekbatashoonya.github.io** → **Settings** → **Actions** → **General** → **Workflow permissions**, select **“Read and write permissions”** (not “Read repository contents and packages permissions only”). Save. Without this, the sync push fails with “refusing to allow a GitHub App to create or update workflow … without workflows permission”.
 
 ### Setting up REPO_DISPATCH_TOKEN (one-time)
 
