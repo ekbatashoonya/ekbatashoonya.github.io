@@ -1,0 +1,22 @@
+# Triggers sync from this repo's dev branch into ekbatashoonya.github.io's staging branch.
+# Add secret REPO_DISPATCH_TOKEN in this repo (Settings → Secrets) with access to trigger workflows in ekbatashoonya/ekbatashoonya.github.io.
+
+name: Trigger sync to GitHub Pages repo
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  trigger-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger sync workflow in pages repo
+        run: |
+          curl -f -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.REPO_DISPATCH_TOKEN }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/ekbatashoonya/ekbatashoonya.github.io/dispatches \
+            -d '{"event_type":"sync-from-lovable"}'
