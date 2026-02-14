@@ -1,13 +1,13 @@
-# Copy this file to the Lovable repo (ek-bata-shoonya-portal-43-9d1ae0a6) as:
-#   .github/workflows/trigger-sync-to-pages.yml
-# See docs/DEPLOY-WORKFLOW.md for setup (REPO_DISPATCH_TOKEN secret).
+# Only workflow in this repo. Triggers sync from dev into ekbatashoonya.github.io (runs that repo's sync-lovable.yml from its default branch, main).
+# Add secret REPO_DISPATCH_TOKEN in this repo (Settings → Secrets) with access to trigger workflows in ekbatashoonya/ekbatashoonya.github.io.
 
 name: Trigger sync to GitHub Pages repo
 
 on:
   push:
     branches:
-      - dev
+      - dev   # only when dev changes
+  workflow_dispatch:   # or run manually from Actions
 
 jobs:
   trigger-sync:
