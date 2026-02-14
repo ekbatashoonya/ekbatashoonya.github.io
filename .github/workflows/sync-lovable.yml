@@ -1,12 +1,11 @@
 name: Sync Lovable into staging
 
+# No automatic triggers. Runs only when: (1) Lovable dev pushes (repository_dispatch) or (2) manual run.
+# On staging this file is present but never auto-triggered (GitHub runs workflow from default branch, main).
 on:
   workflow_dispatch:
-  # Triggered when Lovable repo's dev branch pushes (see docs/DEPLOY-WORKFLOW.md)
   repository_dispatch:
     types: [sync-from-lovable]
-  schedule:
-    - cron: "0 6 * * *"   # daily 06:00 UTC (optional backup)
 
 permissions:
   contents: write

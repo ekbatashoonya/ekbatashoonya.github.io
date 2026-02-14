@@ -1,9 +1,7 @@
 name: Deploy to GitHub Pages
 
+# Manual only (main). Staging has this file for consistency but must not auto-run.
 on:
-  push:
-    branches:
-      - main   # production only; staging is for testing, deploy via PR to main
   workflow_dispatch:
 
 permissions:
