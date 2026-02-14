@@ -31,14 +31,21 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Prefer Lovable's version on conflicts (e.g. docs/DEPLOY-WORKFLOW.md maintained there)
-          git merge -X theirs --no-edit lovable/dev
 
-      - name: Revert any workflow changes from Lovable
-        run: |
-          # GITHUB_TOKEN cannot push workflow file changes, so restore
-          # .github/workflows/ to what staging had before the merge.
-          git checkout HEAD~1 -- .github/workflows/ 2>/dev/null || true
+          # Save current workflow dir before merge
+          cp -r .github/workflows/ /tmp/pages-workflows/
+
+          # Merge; allow conflicts (workflow file modify/delete) then auto-resolve
+          if ! git merge -X theirs --no-edit lovable/dev; then
+            # Resolve all conflicts: accept merge result, then commit
+            git add -A
+            git commit --no-edit -m "Merge lovable/dev into staging (auto-resolved conflicts)"
+          fi
+
+          # Restore .github/workflows/ to what Pages had before merge
+          # (GITHUB_TOKEN cannot push workflow file changes)
+          rm -rf .github/workflows/
+          cp -r /tmp/pages-workflows/ .github/workflows/
           git add .github/workflows/
           git diff --staged --quiet || git commit -m "chore: preserve Pages workflows (strip Lovable workflow changes)"
 
