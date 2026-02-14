@@ -11,7 +11,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  workflows: write   # push workflow files from Lovable (single source of truth)
 
 jobs:
   sync:
@@ -34,6 +33,14 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           # Prefer Lovable's version on conflicts (e.g. docs/DEPLOY-WORKFLOW.md maintained there)
           git merge -X theirs --no-edit lovable/dev
+
+      - name: Revert any workflow changes from Lovable
+        run: |
+          # GITHUB_TOKEN cannot push workflow file changes, so restore
+          # .github/workflows/ to what staging had before the merge.
+          git checkout HEAD~1 -- .github/workflows/ 2>/dev/null || true
+          git add .github/workflows/
+          git diff --staged --quiet || git commit -m "chore: preserve Pages workflows (strip Lovable workflow changes)"
 
       - name: Write version-info.json (branch tracking)
         run: |
