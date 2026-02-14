@@ -1,6 +1,7 @@
 /**
- * Build-time version info from version-info.json on main (flow: Lovable dev → sync → staging → main → deploy).
- * In local dev these are undefined; deployed builds show source commit and date from that flow.
+ * Build-time version info (injected by deploy workflow from version-info.json on main).
+ * Version flows: Lovable dev → sync → staging → PR → main → deploy reads version-info.json.
+ * In local dev these are undefined; deployed builds show source commit and date.
  */
 export interface AppVersion {
   branch: string | undefined;
