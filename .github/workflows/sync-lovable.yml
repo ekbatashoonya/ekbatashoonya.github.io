@@ -31,7 +31,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git merge --no-edit lovable/dev
+          # Prefer Lovable's version on conflicts (e.g. docs/DEPLOY-WORKFLOW.md maintained there)
+          git merge -X theirs --no-edit lovable/dev
 
       - name: Write version-info.json (branch tracking)
         run: |
