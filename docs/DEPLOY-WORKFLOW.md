@@ -14,7 +14,7 @@ The pipeline is one-way; nothing auto-promotes to production:
 3. **Pages staging → Pages main**: When you’re happy with staging, open a PR from `staging` → `main` and merge. Only this manual step updates `main`.
 4. **Pages main → production**: A push to `main` triggers the deploy workflow; the live site updates.
 
-**Where workflow files live:** Keep `.github/workflows/*.yml` (and this doc) on **main**. GitHub runs `repository_dispatch` from the default branch, so the sync workflow must be on `main`. The sync job only checks out and pushes to `staging`; deploy runs only on push to `main`.
+**Where workflow files live:** All `.github/workflows/*.yml` (and this doc) are maintained in the **Lovable repo** and flow here via sync (dev → staging) and your PR (staging → main). The sync pushes the full branch including workflows; deploy runs only on push to **main**.
 
 ## Staging vs prod (one URL)
 
