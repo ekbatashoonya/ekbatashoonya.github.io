@@ -113,7 +113,7 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
     updateMetaTag('twitter:title', pageTitle, 'name');
     updateMetaTag('twitter:description', pageDescription, 'name');
 
-    // Update canonical
+    // Update canonical (per language variant URL)
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -121,6 +121,14 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
       document.head.appendChild(canonical);
     }
     canonical.setAttribute('href', `${config.siteUrl}/#${location.pathname}`);
+
+    // Update <html lang=""> for current language variant (accessibility & SEO)
+    const htmlLang = currentMode === 'en' ? 'en' : 'hi';
+    document.documentElement.lang = htmlLang;
+
+    // Update og:locale for social previews per variant
+    const ogLocale = currentMode === 'en' ? 'en_US' : 'hi_IN';
+    updateMetaTag('og:locale', ogLocale);
 
   }, [location.pathname, title, description, mode]);
 }
