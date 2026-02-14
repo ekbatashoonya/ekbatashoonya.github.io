@@ -10,8 +10,57 @@ on:
   workflow_dispatch:   # or run manually from Actions
 
 jobs:
+  # Ensure package-lock.json is in sync so deploy (npm ci) won't fail after sync.
+  lockfile-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Verify lock file
+        run: npm ci
+      - name: Sync lock file and push (auto-fix)
+        if: failure()
+        run: |
+          echo "Attempting to sync package-lock.json with npm install..."
+          npm install
+          if git diff --quiet package-lock.json; then
+            echo "No lock file changes after npm install; manual fix required."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore: sync package-lock.json with package.json [auto-fix]"
+          git push origin HEAD:dev
+          echo "Pushed updated package-lock.json. A new workflow run will be triggered."
+      - name: Instructions when lock file is out of sync
+        if: failure()
+        run: |
+          echo "## ⚠️ package.json and package-lock.json were out of sync" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### What happened" >> $GITHUB_STEP_SUMMARY
+          echo "The \`npm ci\` step failed because \`package.json\` and \`package-lock.json\` don't match (e.g. dependencies were changed without updating the lock file)." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Automatic fix" >> $GITHUB_STEP_SUMMARY
+          echo "If the **Sync lock file and push** step above succeeded, a new workflow run was triggered with the updated lock file. Check the [Actions tab](https://github.com/${{ github.repository }}/actions) for the latest run." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Manual fix (if auto-fix didn't push)" >> $GITHUB_STEP_SUMMARY
+          echo "In the **Lovable repo** on branch **dev**:" >> $GITHUB_STEP_SUMMARY
+          echo '```bash' >> $GITHUB_STEP_SUMMARY
+          echo "npm install" >> $GITHUB_STEP_SUMMARY
+          echo "git add package-lock.json && git commit -m \"chore: sync package-lock.json\"" >> $GITHUB_STEP_SUMMARY
+          echo "git push origin dev" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "Then re-run this workflow or push again to trigger sync to staging." >> $GITHUB_STEP_SUMMARY
+
   trigger-sync:
     runs-on: ubuntu-latest
+    needs: lockfile-check
     steps:
       - name: Trigger sync workflow in pages repo
         run: |

@@ -1,8 +1,10 @@
 name: Deploy to GitHub Pages
 
-# Manual only (main). Staging has this file for consistency but must not auto-run.
+# Runs on push to main (production) and can be run manually. Staging has this file for consistency but runs from default branch (main) so only main pushes trigger it.
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   contents: read
