@@ -5,6 +5,7 @@ import { useTranslations } from '@/lib/translations';
 import { analytics } from '@/lib/analytics';
 import { config } from '@/config';
 import { MODE_ORDER, MODES } from '@/lib/modes';
+import { getVersionLabel } from '@/lib/version';
 import { Github, Mail, Youtube, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -138,11 +139,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
+        {/* Copyright and version (version flows from Lovable dev → staging → main → deploy) */}
         <div className="mt-8 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            {t('copyright')} {new Date().getFullYear()}
-          </p>
+          <div className="flex flex-col gap-1 items-center sm:items-start">
+            <p className="text-sm text-muted-foreground">
+              {t('copyright')} {new Date().getFullYear()}
+            </p>
+            <p className="text-xs text-muted-foreground/80 font-mono" title="Lovable dev → staging → main">
+              {getVersionLabel()}
+            </p>
+          </div>
           <Link 
             to={aboutPath} 
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
