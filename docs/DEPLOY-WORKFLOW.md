@@ -10,7 +10,7 @@
 | **Pages repo** (ekbatashoonya.github.io) | **staging** | Sync merges Lovable dev → staging, so staging gets this file. |
 | **Pages repo** (ekbatashoonya.github.io) | **main** | You open a PR staging → main and merge; main then has this file. |
 
-Workflow YAML files (`.github/workflows/*.yml`) live only in the **Pages repo** on **main**; they are not in the Lovable repo. The sync workflow runs from Pages main and only updates Pages staging.
+All workflow YAML files (`.github/workflows/*.yml`) are maintained in the **Lovable repo** and flow to the Pages repo via sync (dev → staging) and your PR (staging → main). The sync pushes the full branch including workflows; the deploy runs only on push to **main** in the Pages repo.
 
 ## Repos involved
 
