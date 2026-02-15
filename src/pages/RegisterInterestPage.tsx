@@ -96,6 +96,7 @@ export function RegisterInterestPage() {
               src={getEmbedUrl(config.googleFormUrls[selectedLang])}
               className="flex-1 w-full border border-border rounded-lg min-h-[60vh]"
               title="Register Interest Form"
+              sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-top-navigation-by-user-activation"
             />
           </div>
         ) : (
