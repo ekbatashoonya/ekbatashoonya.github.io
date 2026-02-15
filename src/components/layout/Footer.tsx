@@ -8,6 +8,7 @@ import { MODE_ORDER, MODES } from '@/lib/modes';
 import { getVersionLabel } from '@/lib/version';
 import { Github, Mail, Youtube, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import footerLogo from '@/assets/footer-logo.png';
 
 export function Footer() {
   const { mode, switchMode } = useMode();
@@ -32,7 +33,8 @@ export function Footer() {
         <div className="grid gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="space-y-3">
-            <Link to={homePath} className="font-semibold text-lg text-foreground">
+            <Link to={homePath} className="flex items-center gap-2 font-semibold text-lg text-foreground">
+              <img src={footerLogo} alt="एक बटा शून्य" className="h-10 w-10" />
               {mode === 'en' || mode === 'hinglish' ? 'Ek Bata Shoonya' : 'एक बटा शून्य'}
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
