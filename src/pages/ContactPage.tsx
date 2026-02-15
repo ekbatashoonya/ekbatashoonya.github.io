@@ -1,18 +1,17 @@
+import { Link } from 'react-router-dom';
 import { useMode } from '@/contexts/ModeContext';
+import { useModePath } from '@/hooks/useModePath';
 import { useTranslations } from '@/lib/translations';
 import { Breadcrumbs } from '@/components/content';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { config } from '@/config';
-import { analytics } from '@/lib/analytics';
 import { Mail, Github, Youtube, Sparkles } from 'lucide-react';
-import { RegisterInterestPopup, useRegisterInterest } from '@/components/RegisterInterestPopup';
 
 export function ContactPage() {
   const { mode } = useMode();
   const { t } = useTranslations(mode);
-
-  const interest = useRegisterInterest();
+  const { registerPath } = useModePath();
 
   const content = {
     'en': {
@@ -69,8 +68,6 @@ export function ContactPage() {
   const hasYoutubeUrl = config.youtubeChannelUrl && config.youtubeChannelUrl.length > 0;
 
   return (
-    <>
-    <RegisterInterestPopup open={interest.open} onOpenChange={interest.setOpen} />
     <div className="container px-4 md:px-6 py-8 md:py-12">
       <Breadcrumbs items={[{ label: t('contact') }]} />
       
@@ -81,7 +78,6 @@ export function ContactPage() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Email */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -94,14 +90,11 @@ export function ContactPage() {
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">{pageContent.emailDesc}</p>
               <Button variant="outline" asChild className="w-full">
-                <a href={`mailto:${config.contactEmail}`}>
-                  {config.contactEmail}
-                </a>
+                <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a>
               </Button>
             </CardContent>
           </Card>
 
-          {/* GitHub */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -114,14 +107,11 @@ export function ContactPage() {
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">{pageContent.githubDesc}</p>
               <Button variant="outline" asChild className="w-full">
-                <a href={config.githubUrl} target="_blank" rel="noopener noreferrer">
-                  GitHub
-                </a>
+                <a href={config.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
               </Button>
             </CardContent>
           </Card>
 
-          {/* YouTube */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -144,7 +134,6 @@ export function ContactPage() {
             </CardContent>
           </Card>
 
-          {/* Register Interest */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-3">
@@ -156,14 +145,13 @@ export function ContactPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">{pageContent.registerDesc}</p>
-              <Button className="w-full" onClick={interest.trigger}>
-                {t('registerInterest')}
+              <Button className="w-full" asChild>
+                <Link to={registerPath}>{t('registerInterest')}</Link>
               </Button>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
-    </>
   );
 }

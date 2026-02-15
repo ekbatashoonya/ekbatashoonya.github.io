@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMode } from '@/contexts/ModeContext';
+import { useModePath } from '@/hooks/useModePath';
 import { useTranslations } from '@/lib/translations';
 import { config } from '@/config';
-import { analytics } from '@/lib/analytics';
 import {
   Dialog,
   DialogContent,
@@ -17,14 +18,14 @@ export function InterestPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const { mode } = useMode();
   const { t } = useTranslations(mode);
+  const { registerPath } = useModePath();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if we should show the popup
     const checkShouldShow = () => {
       const lastShown = localStorage.getItem(config.interestPopup.storageKey);
       
       if (!lastShown) {
-        // First visit - show after a short delay
         setTimeout(() => setIsOpen(true), 2000);
         return;
       }
@@ -47,9 +48,8 @@ export function InterestPopup() {
   };
 
   const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    window.open(config.googleFormUrls[mode], '_blank');
     handleClose();
+    navigate(registerPath);
   };
 
   const content = {

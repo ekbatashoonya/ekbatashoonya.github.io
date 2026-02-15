@@ -2,6 +2,7 @@
 import { LanguageMode } from './modes';
 
 type TranslationKey = 
+  | 'register'
   | 'home'
   | 'courses'
   | 'notes'
@@ -58,6 +59,7 @@ type Translations = Record<TranslationKey, string>;
 
 const translations: Record<LanguageMode, Translations> = {
   'hi-shuddh': {
+    register: 'रुचि दर्ज करें',
     home: 'मुखपृष्ठ',
     courses: 'पाठ्यक्रम',
     notes: 'टिप्पणियाँ',
@@ -111,6 +113,7 @@ const translations: Record<LanguageMode, Translations> = {
     vision: 'दृष्टिकोण',
   },
   'hi-mixed': {
+    register: 'Register करें',
     home: 'Home',
     courses: 'Courses',
     notes: 'Notes',
@@ -164,6 +167,7 @@ const translations: Record<LanguageMode, Translations> = {
     vision: 'Vision',
   },
   'hinglish': {
+    register: 'Register karein',
     home: 'Home',
     courses: 'Courses',
     notes: 'Notes',
@@ -217,6 +221,7 @@ const translations: Record<LanguageMode, Translations> = {
     vision: 'Vision',
   },
   'en': {
+    register: 'Register',
     home: 'Home',
     courses: 'Courses',
     notes: 'Notes',

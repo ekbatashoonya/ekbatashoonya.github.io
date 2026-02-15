@@ -6,7 +6,6 @@ import { analytics } from '@/lib/analytics';
 import { config } from '@/config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { RegisterInterestPopup, useRegisterInterest } from '@/components/RegisterInterestPopup';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { 
@@ -29,7 +28,7 @@ import heroLogo from '@/assets/hero-logo.png';
 
 export function HomePage() {
   const { mode } = useMode();
-  const { coursesPath, notesPath, getPath } = useModePath();
+  const { coursesPath, notesPath, getPath, registerPath } = useModePath();
   const { t } = useTranslations(mode);
 
   const featureCards = [
@@ -105,11 +104,7 @@ export function HomePage() {
     }
   };
 
-  const interest = useRegisterInterest();
-
   return (
-    <>
-    <RegisterInterestPopup open={interest.open} onOpenChange={interest.setOpen} />
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-accent to-background">
@@ -190,10 +185,12 @@ export function HomePage() {
                   variant="outline" 
                   size="lg" 
                   className="gap-2 w-full sm:w-auto"
-                  onClick={interest.trigger}
+                  asChild
                 >
-                  <Sparkles className="h-5 w-5" />
-                  {t('registerInterest')}
+                  <Link to={registerPath}>
+                    <Sparkles className="h-5 w-5" />
+                    {t('registerInterest')}
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -298,16 +295,17 @@ export function HomePage() {
               <Button 
                 size="lg" 
                 className="gap-2"
-                onClick={interest.trigger}
+                asChild
               >
-                <Sparkles className="h-5 w-5" />
-                {t('registerInterest')}
+                <Link to={registerPath}>
+                  <Sparkles className="h-5 w-5" />
+                  {t('registerInterest')}
+                </Link>
               </Button>
             </CardContent>
           </Card>
         </div>
       </section>
     </div>
-    </>
   );
 }
