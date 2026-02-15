@@ -13,20 +13,20 @@ interface SEOProps {
 const routeMeta: Record<string, Record<LanguageMode, { title: string; description: string }>> = {
   '': {
     'hi-shuddh': {
-      title: 'एक बटा शून्य | गणित की नींव',
-      description: 'शून्य से अनंत तक — एक बहुभाषी मंच जहाँ गणित की सुदृढ़ नींव, तर्क और अवधारणात्मक स्पष्टता पर कार्य किया जाएगा। वीडियो व्याख्यान और संरचित टिप्पणियों के साथ। आरम्भ से पूर्व पंजीकरण करें।',
+      title: 'एक बटा शून्य — हिन्दी में गणित की नींव',
+      description: 'शून्य से अनंत तक — गणित की सुदृढ़ नींव, तर्क और अवधारणात्मक स्पष्टता। वीडियो व्याख्यान और संरचित टिप्पणियों के साथ। पंजीकरण करें!',
     },
     'hi-mixed': {
-      title: 'Ek Bata Shoonya | Foundations of Mathematics',
-      description: 'शून्य से अनंत तक -- एक multilingual platform जहाँ mathematics की strong foundations, तर्क और conceptual clarity पर काम किया जाएगा। Video lectures और structured notes के साथ। Launch से पहले register करें।',
+      title: 'Ek Bata Shoonya — Foundations of Mathematics in Hindi',
+      description: 'शून्य से अनंत तक — mathematics की strong foundations और conceptual clarity। Video lectures और structured notes के साथ। Register करें!',
     },
     'hinglish': {
-      title: 'Ek Bata Shoonya | Foundations of Mathematics',
-      description: 'Shoonya se anant tak -- ek multilingual platform jahaan mathematics ki strong foundations, tark aur conceptual clarity par kaam kiya jaayega. Video lectures aur structured notes ke saath. Launch se pehle register karein.',
+      title: 'Ek Bata Shoonya — Foundations of Mathematics in Hindi',
+      description: 'Shoonya se anant tak — mathematics ki strong foundations aur conceptual clarity. Video lectures aur structured notes ke saath. Register karein!',
     },
     'en': {
-      title: 'Ek Bata Shoonya | Foundations of Mathematics',
-      description: 'From zero to infinity — a multilingual platform building strong foundations in mathematics through logic and conceptual clarity. With video lectures and structured notes. Register before launch.',
+      title: 'Ek Bata Shoonya — Foundations of Mathematics in Hindi',
+      description: 'From zero to infinity — building strong foundations in mathematics through logic and conceptual clarity. With video lectures and structured notes. Register now!',
     },
   },
   'courses': {
