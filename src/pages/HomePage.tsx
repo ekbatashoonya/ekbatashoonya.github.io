@@ -24,6 +24,7 @@ import {
   Play
 } from 'lucide-react';
 import { courses } from '@/content/data';
+import heroLogo from '@/assets/hero-logo.png';
 
 export function HomePage() {
   const { mode } = useMode();
@@ -120,6 +121,7 @@ export function HomePage() {
               <Sparkles className="w-3 h-3 mr-1" />
               {t('comingSoon')}
             </Badge>
+            <img src={heroLogo} alt="एक बटा शून्य" className="h-40 w-40 md:h-52 md:w-52" />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground animate-fade-in">
               {mode === 'hinglish' || mode === 'en' ? 'Ek Bata Shoonya' : 'एक बटा शून्य'}
             </h1>
