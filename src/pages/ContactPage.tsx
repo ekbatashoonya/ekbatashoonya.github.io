@@ -6,17 +6,13 @@ import { Button } from '@/components/ui/button';
 import { config } from '@/config';
 import { analytics } from '@/lib/analytics';
 import { Mail, Github, Youtube, Sparkles } from 'lucide-react';
+import { RegisterInterestPopup, useRegisterInterest } from '@/components/RegisterInterestPopup';
 
 export function ContactPage() {
   const { mode } = useMode();
   const { t } = useTranslations(mode);
 
-  const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
-    }
-  };
+  const interest = useRegisterInterest();
 
   const content = {
     'en': {
@@ -73,6 +69,8 @@ export function ContactPage() {
   const hasYoutubeUrl = config.youtubeChannelUrl && config.youtubeChannelUrl.length > 0;
 
   return (
+    <>
+    <RegisterInterestPopup open={interest.open} onOpenChange={interest.setOpen} />
     <div className="container px-4 md:px-6 py-8 md:py-12">
       <Breadcrumbs items={[{ label: t('contact') }]} />
       
@@ -158,7 +156,7 @@ export function ContactPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">{pageContent.registerDesc}</p>
-              <Button className="w-full" onClick={handleRegisterInterest}>
+              <Button className="w-full" onClick={interest.trigger}>
                 {t('registerInterest')}
               </Button>
             </CardContent>
@@ -166,5 +164,6 @@ export function ContactPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -8,6 +8,7 @@ import { MODE_ORDER, MODES } from '@/lib/modes';
 import { getVersionLabel } from '@/lib/version';
 import { Github, Mail, Youtube, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { RegisterInterestPopup, useRegisterInterest } from '@/components/RegisterInterestPopup';
 import footerLogo from '@/assets/footer-logo.png';
 
 export function Footer() {
@@ -20,14 +21,11 @@ export function Footer() {
     switchMode(newMode);
   };
 
-  const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
-    }
-  };
+  const interest = useRegisterInterest();
 
   return (
+    <>
+    <RegisterInterestPopup open={interest.open} onOpenChange={interest.setOpen} />
     <footer className="border-t border-border bg-card/50 mt-auto">
       <div className="container px-4 md:px-6 py-8 md:py-12">
         <div className="grid gap-8 md:grid-cols-4">
@@ -50,7 +48,7 @@ export function Footer() {
               variant="outline" 
               size="sm" 
               className="gap-2 mt-2"
-              onClick={handleRegisterInterest}
+              onClick={interest.trigger}
             >
               <Sparkles className="h-4 w-4" />
               {t('registerInterest')}
@@ -160,5 +158,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
