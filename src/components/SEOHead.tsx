@@ -13,20 +13,20 @@ interface SEOProps {
 const routeMeta: Record<string, Record<LanguageMode, { title: string; description: string }>> = {
   '': {
     'hi-shuddh': {
-      title: 'एक बटा शून्य — गणित को सरल बनाना',
-      description: 'हिन्दी में गणित सीखें। वीडियो, टिप्पणियाँ, और अभ्यास प्रश्नों के साथ।',
+      title: 'एक बटा शून्य | गणित की नींव',
+      description: 'शून्य से अनंत तक — एक बहुभाषी मंच जहाँ गणित की सुदृढ़ नींव, तर्क और अवधारणात्मक स्पष्टता पर कार्य किया जाएगा। वीडियो व्याख्यान और संरचित टिप्पणियों के साथ। आरम्भ से पूर्व पंजीकरण करें।',
     },
     'hi-mixed': {
-      title: 'Ek Bata Shoonya — गणित को simple बनाना',
-      description: 'Hindi में maths सीखें। Videos, notes, और practice questions के साथ।',
+      title: 'Ek Bata Shoonya | Foundations of Mathematics',
+      description: 'शून्य से अनंत तक -- एक multilingual platform जहाँ mathematics की strong foundations, तर्क और conceptual clarity पर काम किया जाएगा। Video lectures और structured notes के साथ। Launch से पहले register करें।',
     },
     'hinglish': {
-      title: 'Ek Bata Shoonya — Maths ko simple banana',
-      description: 'Hindi mein maths seekhein. Videos, notes, aur practice questions ke saath.',
+      title: 'Ek Bata Shoonya | Foundations of Mathematics',
+      description: 'Shoonya se anant tak -- ek multilingual platform jahaan mathematics ki strong foundations, tark aur conceptual clarity par kaam kiya jaayega. Video lectures aur structured notes ke saath. Launch se pehle register karein.',
     },
     'en': {
-      title: 'Ek Bata Shoonya — Making Mathematics Simple',
-      description: 'Learn mathematics in Hindi. With videos, notes, and practice questions.',
+      title: 'Ek Bata Shoonya | Foundations of Mathematics',
+      description: 'From zero to infinity — a multilingual platform building strong foundations in mathematics through logic and conceptual clarity. With video lectures and structured notes. Register before launch.',
     },
   },
   'courses': {
