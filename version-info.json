@@ -1,9 +1,9 @@
 {
   "branch": "staging",
-  "commit": "dc11a84",
+  "commit": "8ec8aed",
   "sourceRepo": "ek-bata-shoonya-portal-43-9d1ae0a6",
   "sourceBranch": "dev",
-  "sourceCommit": "53792a1",
-  "updatedAt": "2026-02-15T22:35:33Z",
+  "sourceCommit": "5549556",
+  "updatedAt": "2026-02-15T22:42:54Z",
   "role": "staging"
 }
