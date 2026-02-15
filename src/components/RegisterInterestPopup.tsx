@@ -13,7 +13,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, ArrowLeft } from 'lucide-react';
 
 const formLabels: Record<LanguageMode, string> = {
   'hi-shuddh': 'हिन्दी (शुद्ध)',
@@ -30,6 +30,7 @@ interface RegisterInterestPopupProps {
 export function RegisterInterestPopup({ open, onOpenChange }: RegisterInterestPopupProps) {
   const { mode } = useMode();
   const { t } = useTranslations(mode);
+  const [selectedLang, setSelectedLang] = useState<LanguageMode | null>(null);
 
   const heading = {
     'hi-shuddh': 'अपनी भाषा चुनें',
@@ -47,37 +48,65 @@ export function RegisterInterestPopup({ open, onOpenChange }: RegisterInterestPo
 
   const handleClick = (langMode: LanguageMode) => {
     analytics.registerInterestClick();
-    window.open(config.googleFormUrls[langMode], '_blank');
-    onOpenChange(false);
+    setSelectedLang(langMode);
+  };
+
+  const handleClose = (isOpen: boolean) => {
+    if (!isOpen) setSelectedLang(null);
+    onOpenChange(isOpen);
+  };
+
+  // Convert Google Forms share URL to embeddable URL
+  const getEmbedUrl = (url: string) => {
+    return url.replace('/viewform', '/viewform?embedded=true').replace('forms.gle/', 'docs.google.com/forms/d/e/') + (url.includes('?') ? '&embedded=true' : '?embedded=true');
   };
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-sm">
-        <DialogHeader>
-          <DialogTitle className="text-center">{heading[mode]}</DialogTitle>
-          <DialogDescription className="text-center">
-            {description[mode]}
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex flex-col gap-2 mt-2">
-          {(Object.keys(config.googleFormUrls) as LanguageMode[]).map((langMode) => (
-            <Button
-              key={langMode}
-              variant={langMode === mode ? 'default' : 'outline'}
-              className="w-full justify-start gap-2"
-              onClick={() => handleClick(langMode)}
-            >
-              <Sparkles className="h-4 w-4" />
-              {formLabels[langMode]}
-            </Button>
-          ))}
-        </div>
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className={selectedLang ? "sm:max-w-2xl h-[85vh] flex flex-col" : "sm:max-w-sm"}>
+        {selectedLang ? (
+          <>
+            <DialogHeader className="flex-shrink-0">
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" size="icon" onClick={() => setSelectedLang(null)}>
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+                <DialogTitle>{formLabels[selectedLang]}</DialogTitle>
+              </div>
+            </DialogHeader>
+            <iframe
+              src={getEmbedUrl(config.googleFormUrls[selectedLang])}
+              className="flex-1 w-full border-0 rounded-md"
+              title="Register Interest Form"
+            />
+          </>
+        ) : (
+          <>
+            <DialogHeader>
+              <DialogTitle className="text-center">{heading[mode]}</DialogTitle>
+              <DialogDescription className="text-center">
+                {description[mode]}
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex flex-col gap-2 mt-2">
+              {(Object.keys(config.googleFormUrls) as LanguageMode[]).map((langMode) => (
+                <Button
+                  key={langMode}
+                  variant={langMode === mode ? 'default' : 'outline'}
+                  className="w-full justify-start gap-2"
+                  onClick={() => handleClick(langMode)}
+                >
+                  <Sparkles className="h-4 w-4" />
+                  {formLabels[langMode]}
+                </Button>
+              ))}
+            </div>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );
 }
-
 // Hook for easy usage
 export function useRegisterInterest() {
   const [open, setOpen] = useState(false);
