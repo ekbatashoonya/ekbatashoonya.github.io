@@ -6,6 +6,7 @@ import { ModeSelector } from './ModeSelector';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import headerLogo from '@/assets/header-logo.png';
 
 export function Header() {
   const { mode } = useMode();
@@ -29,8 +30,8 @@ export function Header() {
           to={homePath} 
           className="flex items-center gap-2 font-semibold text-lg text-foreground hover:text-primary transition-colors"
         >
+          <img src={headerLogo} alt="एक बटा शून्य" className="h-8 w-8" />
           <span className="hidden sm:inline">एक बटा शून्य</span>
-          <span className="sm:hidden">१/०</span>
         </Link>
 
         {/* Desktop Navigation */}
