@@ -22,6 +22,7 @@ import { PrivacyPage } from "@/pages/PrivacyPage";
 import { TermsPage } from "@/pages/TermsPage";
 import { ContactPage } from "@/pages/ContactPage";
 import NotFound from "@/pages/NotFound";
+import { RegisterInterestPage } from "@/pages/RegisterInterestPage";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ function ModeRoutes() {
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<TermsPage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="register" element={<RegisterInterestPage />} />
         <Route path="*" element={<NotAvailablePage />} />
       </Route>
 
