@@ -10,7 +10,7 @@ import headerLogo from '@/assets/header-logo.png';
 
 export function Header() {
   const { mode } = useMode();
-  const { homePath, coursesPath, notesPath, blogPath, aboutPath } = useModePath();
+  const { homePath, coursesPath, notesPath, blogPath, aboutPath, registerPath } = useModePath();
   const { t } = useTranslations(mode);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -20,6 +20,7 @@ export function Header() {
     { label: t('notes'), path: notesPath },
     { label: t('blog'), path: blogPath },
     { label: t('about'), path: aboutPath },
+    { label: t('register'), path: registerPath },
   ];
 
   return (
