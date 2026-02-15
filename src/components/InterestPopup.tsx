@@ -48,9 +48,7 @@ export function InterestPopup() {
 
   const handleRegisterInterest = () => {
     analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
-    }
+    window.open(config.googleFormUrls[mode], '_blank');
     handleClose();
   };
 

@@ -6,17 +6,13 @@ import { Mail, Github, Heart, Youtube, Sparkles } from 'lucide-react';
 import { config } from '@/config';
 import { analytics } from '@/lib/analytics';
 import { Button } from '@/components/ui/button';
+import { RegisterInterestPopup, useRegisterInterest } from '@/components/RegisterInterestPopup';
 
 export function AboutPage() {
   const { mode } = useMode();
   const { t } = useTranslations(mode);
 
-  const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
-    }
-  };
+  const interest = useRegisterInterest();
 
   const content = {
     mission: {
@@ -40,6 +36,8 @@ export function AboutPage() {
   };
 
   return (
+    <>
+    <RegisterInterestPopup open={interest.open} onOpenChange={interest.setOpen} />
     <div className="container px-4 md:px-6 py-8 md:py-12">
       <Breadcrumbs items={[{ label: t('about') }]} />
       
@@ -135,7 +133,7 @@ export function AboutPage() {
               </a>
             )}
             <div className="pt-4">
-              <Button onClick={handleRegisterInterest} className="gap-2">
+              <Button onClick={interest.trigger} className="gap-2">
                 <Sparkles className="h-4 w-4" />
                 {t('registerInterest')}
               </Button>
@@ -144,5 +142,6 @@ export function AboutPage() {
         </Card>
       </div>
     </div>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { analytics } from '@/lib/analytics';
 import { config } from '@/config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { RegisterInterestPopup, useRegisterInterest } from '@/components/RegisterInterestPopup';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { 
@@ -104,14 +105,11 @@ export function HomePage() {
     }
   };
 
-  const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
-    }
-  };
+  const interest = useRegisterInterest();
 
   return (
+    <>
+    <RegisterInterestPopup open={interest.open} onOpenChange={interest.setOpen} />
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-b from-accent to-background">
@@ -192,7 +190,7 @@ export function HomePage() {
                   variant="outline" 
                   size="lg" 
                   className="gap-2 w-full sm:w-auto"
-                  onClick={handleRegisterInterest}
+                  onClick={interest.trigger}
                 >
                   <Sparkles className="h-5 w-5" />
                   {t('registerInterest')}
@@ -300,7 +298,7 @@ export function HomePage() {
               <Button 
                 size="lg" 
                 className="gap-2"
-                onClick={handleRegisterInterest}
+                onClick={interest.trigger}
               >
                 <Sparkles className="h-5 w-5" />
                 {t('registerInterest')}
@@ -310,5 +308,6 @@ export function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
