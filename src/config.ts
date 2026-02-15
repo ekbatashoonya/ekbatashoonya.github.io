@@ -11,7 +11,12 @@ export const config = {
   
   // External links - Replace these placeholders!
   youtubeChannelUrl: '' as string, // e.g., 'https://youtube.com/@ekbatashoonya'
-  googleFormUrl: '' as string, // e.g., 'https://forms.gle/...'
+  googleFormUrls: {
+    'hi-shuddh': 'https://forms.gle/khMR7E998UMEioK36',
+    'hi-mixed': 'https://forms.gle/ayWFXNeByw8usVyr7',
+    'hinglish': 'https://forms.gle/uBN5ttpNKFHDQEYdA',
+    'en': 'https://forms.gle/ebxXpLG24RtD6tAE8',
+  },
   contactEmail: 'ekbatashoonya@gmail.com', // Replace with actual email
   githubUrl: 'https://github.com/ekbatashoonya',
   

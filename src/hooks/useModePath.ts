@@ -36,5 +36,6 @@ export function useModePath() {
     notesPath: getPath('notes'),
     blogPath: getPath('blog'),
     aboutPath: getPath('about'),
+    registerPath: getPath('register'),
   };
 }

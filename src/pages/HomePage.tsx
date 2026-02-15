@@ -28,7 +28,7 @@ import heroLogo from '@/assets/hero-logo.png';
 
 export function HomePage() {
   const { mode } = useMode();
-  const { coursesPath, notesPath, getPath } = useModePath();
+  const { coursesPath, notesPath, getPath, registerPath } = useModePath();
   const { t } = useTranslations(mode);
 
   const featureCards = [
@@ -101,13 +101,6 @@ export function HomePage() {
     analytics.youtubeClick();
     if (hasYoutubeUrl) {
       window.open(config.youtubeChannelUrl, '_blank');
-    }
-  };
-
-  const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
     }
   };
 
@@ -192,10 +185,12 @@ export function HomePage() {
                   variant="outline" 
                   size="lg" 
                   className="gap-2 w-full sm:w-auto"
-                  onClick={handleRegisterInterest}
+                  asChild
                 >
-                  <Sparkles className="h-5 w-5" />
-                  {t('registerInterest')}
+                  <Link to={registerPath}>
+                    <Sparkles className="h-5 w-5" />
+                    {t('registerInterest')}
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -300,10 +295,12 @@ export function HomePage() {
               <Button 
                 size="lg" 
                 className="gap-2"
-                onClick={handleRegisterInterest}
+                asChild
               >
-                <Sparkles className="h-5 w-5" />
-                {t('registerInterest')}
+                <Link to={registerPath}>
+                  <Sparkles className="h-5 w-5" />
+                  {t('registerInterest')}
+                </Link>
               </Button>
             </CardContent>
           </Card>

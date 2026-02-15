@@ -1,22 +1,17 @@
+import { Link } from 'react-router-dom';
 import { useMode } from '@/contexts/ModeContext';
+import { useModePath } from '@/hooks/useModePath';
 import { useTranslations } from '@/lib/translations';
 import { Breadcrumbs } from '@/components/content';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Github, Heart, Youtube, Sparkles } from 'lucide-react';
 import { config } from '@/config';
-import { analytics } from '@/lib/analytics';
 import { Button } from '@/components/ui/button';
 
 export function AboutPage() {
   const { mode } = useMode();
   const { t } = useTranslations(mode);
-
-  const handleRegisterInterest = () => {
-    analytics.registerInterestClick();
-    if (config.googleFormUrl) {
-      window.open(config.googleFormUrl, '_blank');
-    }
-  };
+  const { registerPath } = useModePath();
 
   const content = {
     mission: {
@@ -57,7 +52,6 @@ export function AboutPage() {
           </p>
         </div>
 
-        {/* Mission */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -66,13 +60,10 @@ export function AboutPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground leading-relaxed">
-              {content.mission[mode]}
-            </p>
+            <p className="text-muted-foreground leading-relaxed">{content.mission[mode]}</p>
           </CardContent>
         </Card>
 
-        {/* Vision */}
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -81,13 +72,10 @@ export function AboutPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground leading-relaxed">
-              {content.vision[mode]}
-            </p>
+            <p className="text-muted-foreground leading-relaxed">{content.vision[mode]}</p>
           </CardContent>
         </Card>
 
-        {/* Bio */}
         <Card>
           <CardHeader>
             <CardTitle>
@@ -95,49 +83,35 @@ export function AboutPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground leading-relaxed">
-              {content.bio[mode]}
-            </p>
+            <p className="text-muted-foreground leading-relaxed">{content.bio[mode]}</p>
           </CardContent>
         </Card>
 
-        {/* Contact */}
         <Card>
           <CardHeader>
             <CardTitle>{t('contact')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <a 
-              href={`mailto:${config.contactEmail}`}
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a href={`mailto:${config.contactEmail}`} className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
               <Mail className="h-5 w-5" />
               <span>{config.contactEmail}</span>
             </a>
-            <a 
-              href={config.githubUrl}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a href={config.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
               <Github className="h-5 w-5" />
               <span>{t('suggestImprovement')}</span>
             </a>
             {config.youtubeChannelUrl && (
-              <a 
-                href={config.youtubeChannelUrl}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <a href={config.youtubeChannelUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                 <Youtube className="h-5 w-5" />
                 <span>YouTube</span>
               </a>
             )}
             <div className="pt-4">
-              <Button onClick={handleRegisterInterest} className="gap-2">
-                <Sparkles className="h-4 w-4" />
-                {t('registerInterest')}
+              <Button asChild className="gap-2">
+                <Link to={registerPath}>
+                  <Sparkles className="h-4 w-4" />
+                  {t('registerInterest')}
+                </Link>
               </Button>
             </div>
           </CardContent>
