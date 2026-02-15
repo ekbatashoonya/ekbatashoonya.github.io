@@ -86,6 +86,11 @@ export function RegisterInterestPage() {
               <Button variant="outline" size="sm" onClick={() => setShowPicker(true)}>
                 {mode === 'en' ? 'Change language' : mode === 'hinglish' ? 'Language badlein' : mode === 'hi-shuddh' ? 'भाषा बदलें' : 'Language बदलें'}
               </Button>
+              <Button variant="outline" size="sm" asChild>
+                <a href={config.googleFormUrls[selectedLang]} target="_blank" rel="noopener noreferrer">
+                  {mode === 'en' ? 'Open in new tab' : mode === 'hinglish' ? 'New tab mein kholein' : mode === 'hi-shuddh' ? 'नए टैब में खोलें' : 'New tab में खोलें'}
+                </a>
+              </Button>
             </div>
             <iframe
               src={getEmbedUrl(config.googleFormUrls[selectedLang])}
