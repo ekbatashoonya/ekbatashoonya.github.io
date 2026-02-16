@@ -6,7 +6,7 @@ import { analytics } from '@/lib/analytics';
 import { config } from '@/config';
 import { MODE_ORDER, MODES } from '@/lib/modes';
 import { getVersionLabel } from '@/lib/version';
-import { Github, Mail, Youtube, Sparkles } from 'lucide-react';
+import { Github, Mail, Youtube, Sparkles, Twitter, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import footerLogo from '@/assets/footer-logo.png';
 
@@ -108,6 +108,18 @@ export function Footer() {
                 <a href={config.youtubeChannelUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors">
                   <Youtube className="h-4 w-4" />
                   <span>YouTube</span>
+                </a>
+              )}
+              {config.twitterUrl && (
+                <a href={config.twitterUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors">
+                  <Twitter className="h-4 w-4" />
+                  <span>Twitter / X</span>
+                </a>
+              )}
+              {config.instagramUrl && (
+                <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-2 transition-colors">
+                  <Instagram className="h-4 w-4" />
+                  <span>Instagram</span>
                 </a>
               )}
             </div>

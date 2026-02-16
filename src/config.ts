@@ -10,14 +10,16 @@ export const config = {
   siteUrl: 'https://ekbatashoonya.com',
   
   // External links - Replace these placeholders!
-  youtubeChannelUrl: '' as string, // e.g., 'https://youtube.com/@ekbatashoonya'
+  youtubeChannelUrl: 'https://www.youtube.com/@ekbatashoonya',
+  twitterUrl: 'https://x.com/ekbatashoonya',
+  instagramUrl: 'https://instagram.com/ekbatashoonya',
   googleFormUrls: {
     'hi-shuddh': 'https://forms.gle/khMR7E998UMEioK36',
     'hi-mixed': 'https://forms.gle/ayWFXNeByw8usVyr7',
     'hinglish': 'https://forms.gle/uBN5ttpNKFHDQEYdA',
     'en': 'https://forms.gle/ebxXpLG24RtD6tAE8',
   },
-  contactEmail: 'ekbatashoonya@gmail.com', // Replace with actual email
+  contactEmail: 'ekbatashoonya@gmail.com',
   githubUrl: 'https://github.com/ekbatashoonya',
   
   // Analytics - Plausible (privacy-friendly, cookie-less)
