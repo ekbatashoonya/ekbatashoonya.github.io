@@ -15,12 +15,12 @@ The platform is designed for students, teachers, and mathematics enthusiasts who
 
 ## Website
 
-- Homepage: https://ekbatashoonya.com
-- Courses: https://ekbatashoonya.com/en/courses
-- Notes: https://ekbatashoonya.com/en/notes
-- Blog: https://ekbatashoonya.com/en/blog
-- About: https://ekbatashoonya.com/en/about
-- Register Interest: https://ekbatashoonya.com/en/register
+- Homepage: https://ekbatashoonya.com/
+- Courses: https://ekbatashoonya.com/en/courses/
+- Notes: https://ekbatashoonya.com/en/notes/
+- Blog: https://ekbatashoonya.com/en/blog/
+- About: https://ekbatashoonya.com/en/about/
+- Register Interest: https://ekbatashoonya.com/en/register/
 
 ## Courses
 
