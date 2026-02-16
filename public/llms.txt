@@ -1,0 +1,56 @@
+# Ek Bata Shoonya (एक बटा शून्य)
+
+> A free educational platform for learning mathematics in Hindi — from zero to infinity.
+
+## About
+
+Ek Bata Shoonya is a YouTube-first educational project that teaches the foundations of mathematics in Hindi. The name means "one divided by zero" (1/0), symbolising the journey from basic concepts to the infinite depths of mathematical thinking.
+
+The platform is designed for students, teachers, and mathematics enthusiasts who want rigorous mathematical education in Hindi. Content is available in four language modes:
+
+- **Pure Hindi (शुद्ध हिन्दी)**: Complete Devanagari script with Sanskrit-derived terminology
+- **Mixed Hindi-English (मिश्रित)**: Hindi with English technical terms in Devanagari
+- **Hinglish**: Roman script transliteration for those comfortable with Latin characters
+- **English**: Full English for international accessibility
+
+## Website
+
+- Homepage: https://ekbatashoonya.com
+- Courses: https://ekbatashoonya.com/en/courses
+- Notes: https://ekbatashoonya.com/en/notes
+- Blog: https://ekbatashoonya.com/en/blog
+- About: https://ekbatashoonya.com/en/about
+- Register Interest: https://ekbatashoonya.com/en/register
+
+## Courses
+
+### Mathematical Logic
+Study of fundamental principles of logic. Topics include basic concepts, logical connectives, truth tables, and formal proofs.
+
+- Lecture 0 — Basic Concepts (available in Hindi, Mixed, Hinglish)
+- Lecture 1 — Logical Connectives (coming soon)
+
+## Social Media
+
+- YouTube: https://www.youtube.com/@ekbatashoonya
+- Twitter/X: https://x.com/ekbatashoonya
+- Instagram: https://instagram.com/ekbatashoonya
+- GitHub: https://github.com/ekbatashoonya
+- Email: ekbatashoonya@gmail.com
+
+## Key Features
+
+- Free, open-access mathematics education in Hindi
+- Video lectures on YouTube with companion written notes
+- Structured courses starting from foundational logic
+- LaTeX-rendered mathematical notation
+- PDF notes and cheatsheets
+- Privacy-friendly (no cookies, no tracking)
+
+## Target Audience
+
+- Hindi-speaking students preparing for competitive exams (UPSC, GATE, NET, etc.)
+- Undergraduate mathematics students wanting conceptual clarity
+- Teachers looking for Hindi-language mathematics resources
+- Self-learners and mathematics enthusiasts
+- Anyone interested in logic, set theory, and mathematical foundations

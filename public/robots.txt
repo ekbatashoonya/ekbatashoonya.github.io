@@ -18,3 +18,7 @@ Allow: /
 
 # Sitemap
 Sitemap: https://ekbatashoonya.com/sitemap.xml
+
+# LLMs
+# https://llmstxt.org
+LLMs: https://ekbatashoonya.com/llms.txt
