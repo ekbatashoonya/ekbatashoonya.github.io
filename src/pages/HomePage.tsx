@@ -171,16 +171,10 @@ export function HomePage() {
                   size="lg" 
                   className="gap-2 bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto"
                   onClick={handleYoutubeClick}
-                  disabled={!hasYoutubeUrl}
                 >
                   <Youtube className="h-5 w-5" />
                   {t('subscribeYoutube')}
                 </Button>
-                {!hasYoutubeUrl && (
-                  <p className="text-sm text-muted-foreground">
-                    {t('comingSoon')}
-                  </p>
-                )}
                 <Button 
                   variant="outline" 
                   size="lg" 
