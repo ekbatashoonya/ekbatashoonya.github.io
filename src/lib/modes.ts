@@ -76,7 +76,7 @@ export function getModeFromPath(path: string): LanguageMode | null {
 // Build a path with mode prefix
 export function buildModePath(mode: LanguageMode, path: string = ''): string {
   const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-  return `/${mode}${cleanPath ? '/' + cleanPath : ''}`;
+  return `/${mode}/${cleanPath ? cleanPath + '/' : ''}`;
 }
 
 // Switch mode in a path (replace mode segment)
@@ -90,7 +90,7 @@ export function switchModeInPath(currentPath: string, newMode: LanguageMode): st
     segments.unshift(newMode);
   }
   
-  return '/' + segments.join('/');
+  return '/' + segments.join('/') + '/';
 }
 
 // Get path without mode prefix
