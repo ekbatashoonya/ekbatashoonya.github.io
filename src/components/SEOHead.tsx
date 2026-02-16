@@ -106,7 +106,6 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
     // Update OG tags
     updateMetaTag('og:title', pageTitle);
     updateMetaTag('og:description', pageDescription);
-    updateMetaTag('og:url', `${config.siteUrl}${location.pathname}`);
     updateMetaTag('og:type', 'website');
     updateMetaTag('og:site_name', config.siteName);
 
@@ -114,14 +113,18 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
     updateMetaTag('twitter:title', pageTitle, 'name');
     updateMetaTag('twitter:description', pageDescription, 'name');
 
-    // Update canonical (per language variant URL)
+    // Update canonical (per language variant URL, no trailing slash)
+    const cleanPath = location.pathname.replace(/\/+$/, '') || '';
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', `${config.siteUrl}${location.pathname}`);
+    canonical.setAttribute('href', `${config.siteUrl}${cleanPath}`);
+
+    // Update OG URL to match canonical
+    updateMetaTag('og:url', `${config.siteUrl}${cleanPath}`);
 
     // Update <html lang=""> for current language variant (accessibility & SEO)
     const htmlLang = currentMode === 'en' ? 'en' : 'hi';
