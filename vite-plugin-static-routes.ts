@@ -122,7 +122,7 @@ function generateHtml(templateHtml: string, routePath: string): string {
   const meta = getMetaForRoute(routePath);
   if (!meta) return templateHtml;
 
-  const canonicalUrl = `${SITE_URL}/${routePath}`;
+  const canonicalUrl = `${SITE_URL}/${routePath}/`;
   let html = templateHtml;
 
   // Replace <html lang="...">
@@ -154,11 +154,11 @@ function generateHtml(templateHtml: string, routePath: string): string {
   const parts = routePath.split('/');
   const subRoute = parts.slice(1).join('/');
   const hreflangLinks = MODES.map(mode => {
-    const altUrl = `${SITE_URL}/${mode}${subRoute ? '/' + subRoute : ''}`;
+    const altUrl = `${SITE_URL}/${mode}${subRoute ? '/' + subRoute : ''}/`;
     const hreflang = mode === 'en' ? 'en' : mode === 'hinglish' ? 'hi-Latn' : 'hi';
     return `<link rel="alternate" hreflang="${hreflang}" href="${altUrl}" />`;
   }).join('\n    ');
-  const xDefault = `<link rel="alternate" hreflang="x-default" href="${SITE_URL}/${routePath}" />`;
+  const xDefault = `<link rel="alternate" hreflang="x-default" href="${canonicalUrl}" />`;
   
   html = html.replace('</head>', `    ${hreflangLinks}\n    ${xDefault}\n  </head>`);
 

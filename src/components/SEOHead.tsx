@@ -113,18 +113,19 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
     updateMetaTag('twitter:title', pageTitle, 'name');
     updateMetaTag('twitter:description', pageDescription, 'name');
 
-    // Update canonical (per language variant URL, no trailing slash)
-    const cleanPath = location.pathname.replace(/\/+$/, '') || '';
+    // Update canonical (per language variant URL, with trailing slash)
+    const cleanPath = location.pathname.replace(/\/+$/, '');
+    const canonicalUrl = `${config.siteUrl}${cleanPath}/`;
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', `${config.siteUrl}${cleanPath}`);
+    canonical.setAttribute('href', canonicalUrl);
 
     // Update OG URL to match canonical
-    updateMetaTag('og:url', `${config.siteUrl}${cleanPath}`);
+    updateMetaTag('og:url', canonicalUrl);
 
     // Update <html lang=""> for current language variant (accessibility & SEO)
     const htmlLang = currentMode === 'en' ? 'en' : 'hi';
@@ -196,7 +197,7 @@ function updateJsonLd(mode: LanguageMode, baseRoute: string, pathname: string) {
         '@type': 'Course',
         name: course.title[mode],
         description: course.description[mode],
-        url: `${config.siteUrl}/${mode}/courses/${course.slug}`,
+        url: `${config.siteUrl}/${mode}/courses/${course.slug}/`,
         provider: {
           '@type': 'EducationalOrganization',
           name: 'Ek Bata Shoonya',

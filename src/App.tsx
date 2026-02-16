@@ -29,7 +29,7 @@ const queryClient = new QueryClient();
 // Component to handle root redirect
 function RootRedirect() {
   const savedMode = getSavedMode() || DEFAULT_MODE;
-  return <Navigate to={`/${savedMode}`} replace />;
+  return <Navigate to={`/${savedMode}/`} replace />;
 }
 
 // Wrapper component that provides mode-specific routes
