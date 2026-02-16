@@ -1,102 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Only indexable pages: hi-mixed mode, content pages only -->
+  <!-- Thin pages (notes, contact, register) excluded -->
+  <!-- Non-default modes (hi-shuddh, hinglish, en) excluded — noindexed -->
 
-  <!-- Home pages -->
-  <url>
-    <loc>https://ekbatashoonya.com/hi-shuddh/</loc>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ekbatashoonya.com/hi-shuddh/" />
-    <xhtml:link rel="alternate" hreflang="hi-Latn" href="https://ekbatashoonya.com/hinglish/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://ekbatashoonya.com/en/" />
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
   <url>
     <loc>https://ekbatashoonya.com/hi-mixed/</loc>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ekbatashoonya.com/hi-mixed/" />
-    <xhtml:link rel="alternate" hreflang="hi-Latn" href="https://ekbatashoonya.com/hinglish/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://ekbatashoonya.com/en/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://ekbatashoonya.com/hinglish/</loc>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ekbatashoonya.com/hi-mixed/" />
-    <xhtml:link rel="alternate" hreflang="hi-Latn" href="https://ekbatashoonya.com/hinglish/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://ekbatashoonya.com/en/" />
+    <loc>https://ekbatashoonya.com/hi-mixed/courses/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.9</priority>
   </url>
+
   <url>
-    <loc>https://ekbatashoonya.com/en/</loc>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ekbatashoonya.com/hi-mixed/" />
-    <xhtml:link rel="alternate" hreflang="hi-Latn" href="https://ekbatashoonya.com/hinglish/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://ekbatashoonya.com/en/" />
+    <loc>https://ekbatashoonya.com/hi-mixed/courses/mathematical-logic/</loc>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Courses listing -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/courses/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/courses/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/courses/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/courses/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ekbatashoonya.com/hi-mixed/courses/mathematical-logic/logic-lecture-0/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Course: Mathematical Logic -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/courses/mathematical-logic/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/courses/mathematical-logic/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/courses/mathematical-logic/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/courses/mathematical-logic/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ekbatashoonya.com/hi-mixed/blog/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- Lecture: Logic Lecture 0 -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/courses/mathematical-logic/logic-lecture-0/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/courses/mathematical-logic/logic-lecture-0/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/courses/mathematical-logic/logic-lecture-0/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/courses/mathematical-logic/logic-lecture-0/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://ekbatashoonya.com/hi-mixed/blog/welcome/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
-  <!-- Notes -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/notes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/notes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/notes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/notes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://ekbatashoonya.com/hi-mixed/about/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 
-  <!-- Blog listing -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/blog/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://ekbatashoonya.com/hi-mixed/privacy/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 
-  <!-- Blog: Welcome post -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/blog/welcome/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/blog/welcome/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/blog/welcome/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/blog/welcome/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- About -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/about/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-
-  <!-- Register Interest -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/register/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/register/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/register/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/register/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-
-  <!-- Contact -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/contact/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/contact/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/contact/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/contact/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-
-  <!-- Privacy & Terms (all modes) -->
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/privacy/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/privacy/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/privacy/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/privacy/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-shuddh/terms/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/hi-mixed/terms/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/hinglish/terms/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://ekbatashoonya.com/en/terms/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url>
+    <loc>https://ekbatashoonya.com/hi-mixed/terms/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
