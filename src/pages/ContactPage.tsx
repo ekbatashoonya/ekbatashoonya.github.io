@@ -6,7 +6,7 @@ import { Breadcrumbs } from '@/components/content';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { config } from '@/config';
-import { Mail, Github, Youtube, Sparkles } from 'lucide-react';
+import { Mail, Github, Youtube, Sparkles, Twitter, Instagram } from 'lucide-react';
 
 export function ContactPage() {
   const { mode } = useMode();
@@ -23,6 +23,10 @@ export function ContactPage() {
       githubDesc: 'Report issues or suggest improvements',
       youtubeTitle: 'YouTube',
       youtubeDesc: 'Subscribe for video content',
+      twitterTitle: 'Twitter / X',
+      twitterDesc: 'Follow for updates and discussions',
+      instagramTitle: 'Instagram',
+      instagramDesc: 'Follow for visual content and updates',
       registerTitle: 'Register Interest',
       registerDesc: 'Get notified about new content',
     },
@@ -35,6 +39,10 @@ export function ContactPage() {
       githubDesc: 'Issues report करें या improvements suggest करें',
       youtubeTitle: 'YouTube',
       youtubeDesc: 'Video content के लिए subscribe करें',
+      twitterTitle: 'Twitter / X',
+      twitterDesc: 'Updates और discussions के लिए follow करें',
+      instagramTitle: 'Instagram',
+      instagramDesc: 'Visual content और updates के लिए follow करें',
       registerTitle: 'Interest Register करें',
       registerDesc: 'नए content की notification पाएँ',
     },
@@ -47,6 +55,10 @@ export function ContactPage() {
       githubDesc: 'Issues report karein ya improvements suggest karein',
       youtubeTitle: 'YouTube',
       youtubeDesc: 'Video content ke liye subscribe karein',
+      twitterTitle: 'Twitter / X',
+      twitterDesc: 'Updates aur discussions ke liye follow karein',
+      instagramTitle: 'Instagram',
+      instagramDesc: 'Visual content aur updates ke liye follow karein',
       registerTitle: 'Interest Register karein',
       registerDesc: 'Naye content ki notification paayein',
     },
@@ -59,6 +71,10 @@ export function ContactPage() {
       githubDesc: 'समस्याएँ रिपोर्ट करें या सुधार सुझाएँ',
       youtubeTitle: 'यूट्यूब',
       youtubeDesc: 'वीडियो सामग्री के लिए सदस्यता लें',
+      twitterTitle: 'ट्विटर / एक्स',
+      twitterDesc: 'अद्यतन और चर्चा के लिए अनुसरण करें',
+      instagramTitle: 'इंस्टाग्राम',
+      instagramDesc: 'दृश्य सामग्री और अद्यतन के लिए अनुसरण करें',
       registerTitle: 'रुचि दर्ज करें',
       registerDesc: 'नई सामग्री की सूचना प्राप्त करें',
     },
@@ -123,13 +139,42 @@ export function ContactPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <p className="text-sm text-muted-foreground">{pageContent.youtubeDesc}</p>
-              <Button 
-                variant="outline" 
-                className="w-full"
-                disabled={!hasYoutubeUrl}
-                onClick={() => hasYoutubeUrl && window.open(config.youtubeChannelUrl, '_blank')}
-              >
-                {hasYoutubeUrl ? 'YouTube' : t('comingSoon')}
+              <Button variant="outline" asChild className="w-full">
+                <a href={config.youtubeChannelUrl} target="_blank" rel="noopener noreferrer">YouTube</a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900/30">
+                  <Twitter className="h-5 w-5 text-blue-500" />
+                </div>
+                <CardTitle className="text-lg">{pageContent.twitterTitle}</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">{pageContent.twitterDesc}</p>
+              <Button variant="outline" asChild className="w-full">
+                <a href={config.twitterUrl} target="_blank" rel="noopener noreferrer">Twitter / X</a>
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-full bg-pink-100 dark:bg-pink-900/30">
+                  <Instagram className="h-5 w-5 text-pink-600" />
+                </div>
+                <CardTitle className="text-lg">{pageContent.instagramTitle}</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <p className="text-sm text-muted-foreground">{pageContent.instagramDesc}</p>
+              <Button variant="outline" asChild className="w-full">
+                <a href={config.instagramUrl} target="_blank" rel="noopener noreferrer">Instagram</a>
               </Button>
             </CardContent>
           </Card>
