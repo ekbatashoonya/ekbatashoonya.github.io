@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { config } from '@/config';
 import { LanguageMode, MODES } from '@/lib/modes';
+import { courses } from '@/content/data';
 
 interface SEOProps {
   title?: string;
@@ -105,7 +106,7 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
     // Update OG tags
     updateMetaTag('og:title', pageTitle);
     updateMetaTag('og:description', pageDescription);
-    updateMetaTag('og:url', `${config.siteUrl}/#${location.pathname}`);
+    updateMetaTag('og:url', `${config.siteUrl}${location.pathname}`);
     updateMetaTag('og:type', 'website');
     updateMetaTag('og:site_name', config.siteName);
 
@@ -120,7 +121,7 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', `${config.siteUrl}/#${location.pathname}`);
+    canonical.setAttribute('href', `${config.siteUrl}${location.pathname}`);
 
     // Update <html lang=""> for current language variant (accessibility & SEO)
     const htmlLang = currentMode === 'en' ? 'en' : 'hi';
@@ -129,6 +130,9 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
     // Update og:locale for social previews per variant
     const ogLocale = currentMode === 'en' ? 'en_US' : 'hi_IN';
     updateMetaTag('og:locale', ogLocale);
+
+    // JSON-LD structured data
+    updateJsonLd(currentMode, baseRoute, location.pathname);
 
   }, [location.pathname, title, description, mode]);
 }
@@ -141,6 +145,75 @@ function updateMetaTag(property: string, content: string, attr: 'property' | 'na
     document.head.appendChild(tag);
   }
   tag.setAttribute('content', content);
+}
+
+// JSON-LD structured data management
+function updateJsonLd(mode: LanguageMode, baseRoute: string, pathname: string) {
+  // Remove existing JSON-LD
+  document.querySelectorAll('script[data-jsonld="ebs"]').forEach(el => el.remove());
+
+  const schemas: object[] = [];
+
+  // Organization schema (always present)
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'EducationalOrganization',
+    name: 'Ek Bata Shoonya',
+    alternateName: 'एक बटा शून्य',
+    url: config.siteUrl,
+    logo: `${config.siteUrl}/favicon-180.png`,
+    description: 'Free mathematics education platform in Hindi — from zero to infinity.',
+    sameAs: [
+      config.youtubeChannelUrl,
+      config.twitterUrl,
+      config.instagramUrl,
+      config.githubUrl,
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: config.contactEmail,
+      contactType: 'customer support',
+    },
+  });
+
+  // WebSite schema with search
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Ek Bata Shoonya',
+    url: config.siteUrl,
+    inLanguage: mode === 'en' ? 'en' : 'hi',
+  });
+
+  // Course schemas on courses pages
+  if (baseRoute === '' || baseRoute === 'courses') {
+    courses.forEach(course => {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        name: course.title[mode],
+        description: course.description[mode],
+        url: `${config.siteUrl}/${mode}/courses/${course.slug}`,
+        provider: {
+          '@type': 'EducationalOrganization',
+          name: 'Ek Bata Shoonya',
+          url: config.siteUrl,
+        },
+        isAccessibleForFree: true,
+        inLanguage: mode === 'en' ? 'en' : 'hi',
+        teaches: 'Mathematics',
+      });
+    });
+  }
+
+  // Inject all schemas
+  schemas.forEach(schema => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-jsonld', 'ebs');
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  });
 }
 
 // Component version for use in pages
