@@ -1,0 +1,1 @@
+This directory contains all the experimental material that any of us developers can post into, which would later make its way as a blog or notes.
