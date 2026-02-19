@@ -94,6 +94,24 @@ export const blogPosts: BlogPost[] = [
     date: '2025-01-01',
     availableModes: ['hi-shuddh', 'hi-mixed', 'hinglish'],
   },
+  {
+    id: 'introduction',
+    slug: 'introduction',
+    title: {
+      'hi-shuddh': 'एक बटा शून्य: परिचय',
+      'hi-mixed': 'Ek Bata Shoonya: Introduction',
+      'hinglish': 'Ek Bata Shoonya: Introduction',
+      'en': 'Ek Bata Shoonya: Introduction',
+    },
+    excerpt: {
+      'hi-shuddh': 'चलो आज आपको गणित की एक ऐसी दुनिया में लेकर चलते हैं जहाँ शायद आप कभी न आए हों।',
+      'hi-mixed': 'चलो आज आपको Maths की एक ऐसी दुनिया में लेकर चलते हैं जहाँ शायद आप कभी न आए हों।',
+      'hinglish': 'Chalo aaj aapko Maths ki ek aisi duniya mein lekar chalte hain jahan shayad aap kabhi na aaye hon.',
+      'en': 'Come, let us walk into a world of foundational mathematics that many perhaps never truly have visited.',
+    },
+    date: '2025-01-15',
+    availableModes: ['hi-shuddh', 'hi-mixed', 'hinglish', 'en'],
+  },
 ];
 
 // Helper to get course by slug

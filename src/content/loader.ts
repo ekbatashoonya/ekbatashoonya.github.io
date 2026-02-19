@@ -12,6 +12,12 @@ import blogWelcomeHiShuddh from './blog/welcome/hi-shuddh.md?raw';
 import blogWelcomeHiMixed from './blog/welcome/hi-mixed.md?raw';
 import blogWelcomeHinglish from './blog/welcome/hinglish.md?raw';
 
+// Blog - Introduction
+import blogIntroHiShuddh from './blog/introduction/hi-shuddh.md?raw';
+import blogIntroHiMixed from './blog/introduction/hi-mixed.md?raw';
+import blogIntroHinglish from './blog/introduction/hinglish.md?raw';
+import blogIntroEn from './blog/introduction/en.md?raw';
+
 // Content maps
 const lectureContent: Record<string, Partial<Record<LanguageMode, string>>> = {
   'mathematical-logic/logic-lecture-0': {
@@ -27,7 +33,12 @@ const blogContent: Record<string, Partial<Record<LanguageMode, string>>> = {
     'hi-shuddh': blogWelcomeHiShuddh,
     'hi-mixed': blogWelcomeHiMixed,
     'hinglish': blogWelcomeHinglish,
-    // 'en' content not available yet
+  },
+  'introduction': {
+    'hi-shuddh': blogIntroHiShuddh,
+    'hi-mixed': blogIntroHiMixed,
+    'hinglish': blogIntroHinglish,
+    'en': blogIntroEn,
   },
 };
 
