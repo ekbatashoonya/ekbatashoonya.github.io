@@ -1,4 +1,4 @@
-# Ek Bata Shoonya – Introduction
+# Ek Bata Shoonya: Introduction
 
 Achha doston, chalo aaj aapko Maths ki ek aisi duniya mein lekar chalte hain jahan shayad aap mein se kuch log pehle aa chuke hon, par kai log shayad kabhi bhi na aaye hon.
 
