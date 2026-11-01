@@ -1,6 +1,11 @@
 # Ek Bata Shoonya / एक बटा शून्य
 # https://ekbatashoonya.com
+#
+# Policy: indexing, search, and citation are welcome.
+# Use of this site's content to train AI / machine-learning models is NOT permitted.
+# Training-only crawlers are blocked below; search and user-initiated fetchers are allowed.
 
+# --- Search engines (allowed) ---
 User-agent: Googlebot
 Allow: /
 
@@ -13,8 +18,98 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# --- AI search / citation crawlers (allowed: index and cite, no training) ---
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: meta-externalfetcher
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+# --- AI training crawlers (blocked) ---
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training-data-crawler
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+User-agent: AI2Bot
+Disallow: /
+
+User-agent: PanguBot
+Disallow: /
+
+User-agent: Kangaroo Bot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+# --- Everyone else ---
 User-agent: *
 Allow: /
+
+# Machine-readable AI usage preference (IETF AI Preferences draft)
+Content-Usage: train-ai=n, search=y, ai-input=y
 
 # Sitemap
 Sitemap: https://ekbatashoonya.com/sitemap.xml

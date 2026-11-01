@@ -168,9 +168,8 @@ function generateHtml(templateHtml: string, routePath: string): string {
   html = html.replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${canonicalUrl}"`);
 
   // Add noindex for non-indexable pages (before </head>)
-  if (noindex) {
-    html = html.replace('</head>', `    <meta name="robots" content="noindex, follow" />\n  </head>`);
-  }
+  const robotsContent = noindex ? 'noindex, follow, noai, noimageai' : 'index, follow, noai, noimageai';
+  html = html.replace('</head>', `    <meta name="robots" content="${robotsContent}" />\n  </head>`);
 
   // NO hreflang tags — removed per SEO strategy
 
