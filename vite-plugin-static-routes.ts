@@ -5,12 +5,19 @@
  * This ensures GitHub Pages returns HTTP 200 (not 404) for every route,
  * and injects route-specific meta tags so crawlers see correct titles,
  * descriptions, and canonical URLs without executing JavaScript.
+ *
+ * Each page is also prerendered: the React tree is rendered to HTML with
+ * src/entry-server.tsx and written into <div id="root">, so crawlers and AI
+ * assistants that do not run JavaScript see the full page content. The
+ * browser hydrates this markup (see src/main.tsx). If prerendering fails
+ * the build still succeeds and falls back to the empty SPA shell.
  * 
  * Only hi-mixed content pages are indexable. All other modes and thin
  * pages get <meta name="robots" content="noindex, follow">.
  */
 
-import { Plugin } from 'vite';
+import { Plugin, build } from 'vite';
+import { pathToFileURL } from 'url';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -72,6 +79,12 @@ const routeMeta: Record<string, Record<LanguageMode, RouteMeta>> = {
     'hinglish': { title: 'Welcome to Ek Bata Shoonya! — Ek Bata Shoonya', description: 'Hum Ek Bata Shoonya ka launch karte hue bahut excited hain — Hindi mein maths education ka ek naya platform.', lang: 'hi', ogLocale: 'hi_IN' },
     'en': { title: 'Welcome to Ek Bata Shoonya! — Ek Bata Shoonya', description: 'We are excited to launch Ek Bata Shoonya — a free mathematics education platform in Hindi with video lectures and notes.', lang: 'en', ogLocale: 'en_US' },
   },
+  'blog/introduction': {
+    'hi-shuddh': { title: 'एक बटा शून्य: परिचय — एक बटा शून्य', description: 'चलो आज आपको गणित की एक ऐसी दुनिया में लेकर चलते हैं जहाँ शायद आप कभी न आए हों — नींव से शुरू करते हुए।', lang: 'hi', ogLocale: 'hi_IN' },
+    'hi-mixed': { title: 'Ek Bata Shoonya: Introduction — Ek Bata Shoonya', description: 'चलो आज आपको Maths की एक ऐसी दुनिया में लेकर चलते हैं जहाँ शायद आप कभी न आए हों — foundations से शुरू करते हुए। Hindi में mathematics का introduction।', lang: 'hi', ogLocale: 'hi_IN' },
+    'hinglish': { title: 'Ek Bata Shoonya: Introduction — Ek Bata Shoonya', description: 'Chalo aaj aapko Maths ki ek aisi duniya mein lekar chalte hain jahan shayad aap kabhi na aaye hon.', lang: 'hi', ogLocale: 'hi_IN' },
+    'en': { title: 'Ek Bata Shoonya: Introduction — Ek Bata Shoonya', description: 'Come, let us walk into a world of foundational mathematics that many perhaps never truly have visited.', lang: 'en', ogLocale: 'en_US' },
+  },
   'about': {
     'hi-shuddh': { title: 'परिचय — एक बटा शून्य', description: 'एक बटा शून्य के बारे में जानें — हमारा उद्देश्य, दृष्टि, और टीम।', lang: 'hi', ogLocale: 'hi_IN' },
     'hi-mixed': { title: 'About — Ek Bata Shoonya', description: 'Ek Bata Shoonya के बारे में जानें — हमारा mission mathematics को Hindi में accessible बनाना है। Community-driven, free, और open-source।', lang: 'hi', ogLocale: 'hi_IN' },
@@ -130,7 +143,48 @@ function getMetaForRoute(routePath: string): RouteMeta | null {
   return routeMeta[subRoute]?.[mode] || null;
 }
 
-function generateHtml(templateHtml: string, routePath: string): string {
+/** Inject prerendered app markup into the empty root container. */
+function injectAppHtml(html: string, appHtml: string): string {
+  return html.replace(/<div id="root"><\/div>/, `<div id="root">${appHtml}</div>`);
+}
+
+type RenderFn = (url: string) => string;
+
+const SSR_ENTRY = 'src/entry-server.tsx';
+const SSR_OUT_DIR = '.prerender';
+
+/**
+ * Build src/entry-server.tsx as an SSR bundle (same Vite config, so markdown
+ * ?raw imports and the @ alias resolve as in the client build) and import it.
+ * Returns null, and the build falls back to empty SPA shells, if this fails.
+ */
+async function loadRenderer(): Promise<RenderFn | null> {
+  const outDir = path.resolve(__dirname, SSR_OUT_DIR);
+  try {
+    await build({
+      configFile: path.resolve(__dirname, 'vite.config.ts'),
+      mode: 'production',
+      logLevel: 'error',
+      build: {
+        ssr: SSR_ENTRY,
+        outDir,
+        emptyOutDir: true,
+        rollupOptions: { output: { entryFileNames: 'entry-server.js' } },
+      },
+    });
+    const mod = (await import(pathToFileURL(path.join(outDir, 'entry-server.js')).href)) as { render: RenderFn };
+    return mod.render;
+  } catch (err) {
+    console.warn('[static-routes] ⚠️  Prerendering unavailable, emitting SPA shells only:', err);
+    return null;
+  }
+}
+
+function removePrerenderDir(): void {
+  fs.rmSync(path.resolve(__dirname, SSR_OUT_DIR), { recursive: true, force: true });
+}
+
+function generateHtml(templateHtml: string, routePath: string, appHtml = ''): string {
   const meta = getMetaForRoute(routePath);
   if (!meta) return templateHtml;
 
@@ -171,6 +225,9 @@ function generateHtml(templateHtml: string, routePath: string): string {
   const robotsContent = noindex ? 'noindex, follow, noai, noimageai' : 'index, follow, noai, noimageai';
   html = html.replace('</head>', `    <meta name="robots" content="${robotsContent}" />\n  </head>`);
 
+  // Prerendered page content
+  if (appHtml) html = injectAppHtml(html, appHtml);
+
   // NO hreflang tags — removed per SEO strategy
 
   return html;
@@ -183,8 +240,9 @@ function escapeHtml(text: string): string {
 export function staticRoutesPlugin(): Plugin {
   return {
     name: 'static-routes-generator',
-    apply: 'build',
-    closeBundle() {
+    // Client build only: the plugin's own SSR build (loadRenderer) must not recurse.
+    apply: (config, env) => env.command === 'build' && !config.build?.ssr,
+    async closeBundle() {
       const distDir = path.resolve(__dirname, 'dist');
       const indexPath = path.join(distDir, 'index.html');
 
@@ -195,6 +253,20 @@ export function staticRoutesPlugin(): Plugin {
 
       const templateHtml = fs.readFileSync(indexPath, 'utf-8');
       const routes = getAllRoutes();
+      const render = await loadRenderer();
+      let prerendered = 0;
+
+      const renderRoute = (route: string): string => {
+        if (!render) return '';
+        try {
+          const html = render(`/${route}/`);
+          if (html) prerendered++;
+          return html;
+        } catch (err) {
+          console.warn(`[static-routes] ⚠️  Prerender failed for /${route}/:`, err);
+          return '';
+        }
+      };
 
       console.log(`[static-routes] Generating ${routes.length} static route pages...`);
 
@@ -206,11 +278,19 @@ export function staticRoutesPlugin(): Plugin {
         if (fs.existsSync(routeIndexPath)) continue;
 
         fs.mkdirSync(routeDir, { recursive: true });
-        const html = generateHtml(templateHtml, route);
+        const html = generateHtml(templateHtml, route, renderRoute(route));
         fs.writeFileSync(routeIndexPath, html, 'utf-8');
       }
 
-      console.log(`[static-routes] ✅ Generated ${routes.length} route pages.`);
+      // Root index.html: the app redirects client-side to the saved language
+      // mode, which crawlers never follow. Give them the default-mode home
+      // page content instead (main.tsx re-renders rather than hydrates "/").
+      const rootHtml = renderRoute(INDEXABLE_MODE);
+      if (rootHtml) fs.writeFileSync(indexPath, injectAppHtml(templateHtml, rootHtml), 'utf-8');
+
+      removePrerenderDir();
+
+      console.log(`[static-routes] ✅ Generated ${routes.length} route pages (${prerendered} prerendered).`);
     },
   };
 }

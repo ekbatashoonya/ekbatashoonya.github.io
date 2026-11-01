@@ -72,6 +72,12 @@ export const routeMeta: Record<string, Record<LanguageMode, { title: string; des
     'hinglish': { title: 'Welcome to Ek Bata Shoonya!', description: 'Hum Ek Bata Shoonya ka launch karte hue bahut excited hain — Hindi mein maths education ka ek naya platform.' },
     'en': { title: 'Welcome to Ek Bata Shoonya!', description: 'We are excited to launch Ek Bata Shoonya — a free mathematics education platform in Hindi with video lectures and notes.' },
   },
+  'blog/introduction': {
+    'hi-shuddh': { title: 'एक बटा शून्य: परिचय — एक बटा शून्य', description: 'चलो आज आपको गणित की एक ऐसी दुनिया में लेकर चलते हैं जहाँ शायद आप कभी न आए हों — नींव से शुरू करते हुए।' },
+    'hi-mixed': { title: 'Ek Bata Shoonya: Introduction — Ek Bata Shoonya', description: 'चलो आज आपको Maths की एक ऐसी दुनिया में लेकर चलते हैं जहाँ शायद आप कभी न आए हों — foundations से शुरू करते हुए। Hindi में mathematics का introduction।' },
+    'hinglish': { title: 'Ek Bata Shoonya: Introduction — Ek Bata Shoonya', description: 'Chalo aaj aapko Maths ki ek aisi duniya mein lekar chalte hain jahan shayad aap kabhi na aaye hon.' },
+    'en': { title: 'Ek Bata Shoonya: Introduction — Ek Bata Shoonya', description: 'Come, let us walk into a world of foundational mathematics that many perhaps never truly have visited.' },
+  },
   'about': {
     'hi-shuddh': { title: 'परिचय', description: 'एक बटा शून्य के बारे में जानें — हमारा उद्देश्य, दृष्टि, और टीम।' },
     'hi-mixed': { title: 'About', description: 'Ek Bata Shoonya के बारे में जानें — हमारा mission mathematics को Hindi में accessible बनाना है। Community-driven, free, और open-source।' },
