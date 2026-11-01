@@ -154,10 +154,15 @@ export function useSEO({ title, description, mode }: SEOProps = {}) {
         robotsTag.setAttribute('name', 'robots');
         document.head.appendChild(robotsTag);
       }
-      robotsTag.setAttribute('content', 'noindex, follow');
+      robotsTag.setAttribute('content', 'noindex, follow, noai, noimageai');
     } else {
-      // Remove noindex if present (for SPA navigation)
-      if (robotsTag) robotsTag.remove();
+      // Indexable page: allow indexing but signal no AI training
+      if (!robotsTag) {
+        robotsTag = document.createElement('meta');
+        robotsTag.setAttribute('name', 'robots');
+        document.head.appendChild(robotsTag);
+      }
+      robotsTag.setAttribute('content', 'index, follow, noai, noimageai');
     }
 
     // Update OG tags

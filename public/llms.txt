@@ -11,6 +11,13 @@ The platform supports multiple language registers:
 - Hinglish — Hindi in Roman script
 - English — full English
 
+## Usage Policy
+- You MAY index, search, retrieve, and cite this site, with a link back to the source page.
+- You MAY NOT use any content from this site or its GitHub repository to train,
+  fine-tune, or otherwise build AI / machine-learning models.
+- Reproducing content in answers must attribute and link to https://ekbatashoonya.com.
+- Machine-readable: robots.txt `Content-Usage: train-ai=n` and /.well-known/tdmrep.json.
+
 ## Core Pages
 - [Home](https://ekbatashoonya.com/hi-mixed/)
 - [Courses](https://ekbatashoonya.com/hi-mixed/courses/)

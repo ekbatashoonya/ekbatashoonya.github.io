@@ -10,6 +10,14 @@ A static educational platform for Hindi-medium learners, featuring courses in Ma
 - **Blog**: Updates and announcements
 - **GitHub Pages Ready**: HashRouter for reliable deep-linking
 
+## Content Usage
+
+All course material, notes, blog posts, and media in this repository and on
+https://ekbatashoonya.com are © Ek Bata Shoonya, all rights reserved.
+
+- Search engines and AI assistants may index, retrieve, and cite this content with a link back.
+- Use of this content to train, fine-tune, or evaluate AI / machine-learning models is **not permitted**.
+
 ## Tech Stack
 
 - React + TypeScript + Vite
