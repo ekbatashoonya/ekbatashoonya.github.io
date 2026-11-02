@@ -62,19 +62,30 @@ function ModeRoutes() {
   );
 }
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+/**
+ * Router-agnostic application tree. Must be rendered inside a react-router
+ * Router: BrowserRouter in the browser (see App) or StaticRouter at build
+ * time (see entry-server.tsx, used to prerender each route to static HTML).
+ */
+export function AppShell() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
         <ModeProvider>
           <InterestPopup />
           <ModeRoutes />
         </ModeProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
+
+const App = () => (
+  <BrowserRouter>
+    <AppShell />
+  </BrowserRouter>
 );
 
 export default App;
